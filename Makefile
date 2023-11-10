@@ -6,48 +6,48 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -g -Wall -Wextra -Werror -c
 
-LIBFT = ./inc/libft/libft.a
+MLX_FLAGS = -L./mlx_linux -lmlx -lXext -lX11 -lm -lz
 
-MINILIB = ./inc/minilibx-linux/libmlx.a
+LIBFT = ./libft/libft.a
 
-LINKS = -lreadline
 
 #		42NORM_MUST_HAVE
 .c.o:
-	@cc $(CFLAGS) -I ./inc/ -c $< -o $@
+	@printf "\033[0;33m compiling $<\n\033[0m"
+	@cc $(CFLAGS) -I./libft -I./inc -c $< -o $(<:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@printf "\033[0;32m compiling Libft...\n\033[0m"
-	@make -C ./inc/Libft
+	@make -C ./libft
 	@printf "\033[0;32m compiling Cub3d...\n\033[0m"
-	@cc $(CFLGS) $(OBJS) $(LINKS) $(LIBFT) $(MINILIB) -o $(NAME)
+	@cc $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
 
 clean:
 	@printf "\033[0;31m cleaning Libft...\n\033[0m"
-	@make clean -C ./inc/Libft
+	@make clean -C ./libft
 	@printf "\033[0;31m cleaning Cub3d...\n\033[0m"
 	@rm -f $(OBJS)
 
 
 fclean: clean
 	@printf "\033[0;31m fcleaning Libft...\n\033[0m"
-	@make fclean -C ./inc/Libft
+	@make fclean -C ./libft
 	@printf "\033[0;30m fcleaning Cub3d...\n\033[0m"
 	@rm -f $(NAME)
 
 #		EXTRA
 #norm:
 # 	@printf "\033[0;32m norminette ./Libft/*.c .h ...\n\033[0m"
-# 	@make norm -C ./inc/Libft
+# 	@make norm -C ./libft
 # 	@printf "\033[0;32m norminette ./src/*.c ...\n\033[0m"
 # 	@norminette $(SRCS)
 
 # valgrind: all
 # 	@printf "\033[0;32m exe with valgrind...\n\033[0m"
-# 	@valgrind --show-leak-kinds=all --leak-check=full --suppressions=readline.supp ./minishell
+# 	@valgrind --show-leak-kinds=all --leak-check=full ./$(NAME)
 
 re: fclean all
 

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 19:09:29 by everonel          #+#    #+#             */
-/*   Updated: 2022/10/22 16:22:25 by everonel         ###   ########.fr       */
+/*   Created: 2022/10/17 17:28:54 by everonel          #+#    #+#             */
+/*   Updated: 2023/11/10 02:01:22 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstnew(void *data)
 {
-	int		i;
 	t_list	*node;
 
-	i = 0;
-	node = lst;
-	while (node)
-	{
-		i++;
-		node = node -> next;
-	}
-	return (i);
+	node = (t_list *)malloc(sizeof(t_list));
+	if (!node)
+		return (0);
+	node -> data = data;
+	node -> next = NULL;
+	return (node);
 }

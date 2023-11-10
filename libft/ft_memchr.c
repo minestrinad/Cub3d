@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 17:28:54 by everonel          #+#    #+#             */
-/*   Updated: 2022/10/22 16:21:27 by everonel         ###   ########.fr       */
+/*   Created: 2022/10/10 14:15:20 by everonel          #+#    #+#             */
+/*   Updated: 2023/11/10 02:01:38 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_list	*node;
+	size_t	i;
 
-	node = (t_list *)malloc(sizeof(t_list));
-	if (!node)
-		return (0);
-	node -> content = content;
-	node -> next = NULL;
-	return (node);
+	i = 0;
+	while (i < n)
+	{
+		if (((unsigned char *)s)[i] == (unsigned char)c)
+			return (((unsigned char *)s) + i);
+		i++;
+	}
+	return (0);
 }
