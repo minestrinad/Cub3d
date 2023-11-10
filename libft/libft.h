@@ -6,11 +6,11 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:49:28 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/10 00:36:31 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/10 13:27:07 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_
+#ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stdlib.h>

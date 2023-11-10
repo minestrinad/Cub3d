@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 21:19:27 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/10 11:46:34 by everonel         ###   ########.fr       */
+/*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
+/*   Updated: 2023/11/10 13:54:21 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ static char **ft_lst_to_matrix(t_list *map)
     return (map_matrix);
 }
 
+int ft_matlen(char **mat){
+    int i;
+
+    i= 0;
+    while (mat[i]){
+        i++;
+    }
+    return (i -1);
+}
+
 static void ft_check_charachters(char **map)
 {
     int i;
@@ -48,16 +58,16 @@ static void ft_check_charachters(char **map)
 
     i = 0;
     j = 0;
-    while (map[i])
+    while (i < ft_matlen(map))
     {
         while (map[i][j])
         {
             if (ft_strchr(EMPTY, map[i][j]) || ft_strchr(WALL, map[i][j]) || ft_strchr(PLAYER, map[i][j]) || map[i][j] == '\n' || map[i][j] == '\0')
                 j++;
-            else
+            else{
                 ft_putstr_fd("Invalid charachter in map", 2);
-            printf ("Map is valid\n");
-            printf ("char : %c\n", map[i][j]);
+                exit (1);
+            }
         }
         j = 0;
         i++;
@@ -107,29 +117,49 @@ static char **ft_read_file(char *map_file)
     return (map_matrix);
 }
 
-// void    ft_check_bounderies(char **map)
-// {
-//     // se riempio una stringa lunga quanto il massimo della larghezza della mappa di 0
-//     // e ogni trovo il umhhhhh....
-//     i = 0;
-//     j = 0;
+void    ft_check_bounderies(char **map)
+{
+    char **str_split;
 
-//     while ( map[i] )
+    int i= 0;
+    int j = 0;
+    while (i < ft_matlen(map))
+    {
+        str_split = ft_split(map[i], ' ');
+        printf ("%s\n", str_split[0]);
+        while (j <= ft_matlen(str_split)){
+            printf ("%c\n", str_split[j][ft_strlen(str_split[j])]);
+            if (str_split[j][0] != '1' || str_split[j][ft_strlen(str_split[j])] != '1'){
+                ft_putstr_fd("map not closed\n", 2);
+                exit (1);
+            }
+            j++;
+        }
+        j = 0;
+        i++;
+    }
+    // se riempio una stringa lunga quanto il massimo della larghezza della mappa di 0
+    // e ogni trovo il umhhhhh....
+    // i = 0;
+    // j = 0;
 
-//         while ( map[i][j] ){
-//             if ( map[i][j] != '\ ' && map[i][j] != '1')
-//                 ft_putstr_fd("Map non enclosured", 2);
-//             if ( map[i][j] == '1')
-//                 break ;
-//         }
-//         j = 0;
-//         i++;
+    // while ( map[i] )
 
-//     // controllare che ogni stringa inizi e finisca con un 1
-//     // controllare da ogni posizione con uno 0 (0, *(n<max_height) (*(n<max_width), 0)
-//     // veda come primo carattere un 1 (escludendo gli spazi)
+    //     while ( map[i][j] ){
+    //         if ( map[i][j] != '\ ' && map[i][j] != '1')
+    //             ft_putstr_fd("Map non enclosured", 2);
+    //         if ( map[i][j] == '1')
+    //             break ;
+    //     }
+    //     j = 0;
+    //     i++;
 
-// }
+
+    // controllare che ogni stringa inizi e finisca con un 1
+    // controllare da ogni posizione con uno 0 (0, *(n<max_height) (*(n<max_width), 0)
+    // veda come primo carattere un 1 (escludendo gli spazi)
+
+}
 
 static char    **ft_mapparser(char *map_file)
 {
@@ -137,7 +167,7 @@ static char    **ft_mapparser(char *map_file)
 
     map = ft_read_file(map_file);
     ft_check_charachters(map);
-    // ft_check_bounderies(map);
+    ft_check_bounderies(map);
     return (map);
 }
 
