@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:19:27 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/10 04:46:03 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:46:34 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,37 @@ static char **ft_read_file(char *map_file)
     return (map_matrix);
 }
 
+// void    ft_check_bounderies(char **map)
+// {
+//     // se riempio una stringa lunga quanto il massimo della larghezza della mappa di 0
+//     // e ogni trovo il umhhhhh....
+//     i = 0;
+//     j = 0;
+
+//     while ( map[i] )
+
+//         while ( map[i][j] ){
+//             if ( map[i][j] != '\ ' && map[i][j] != '1')
+//                 ft_putstr_fd("Map non enclosured", 2);
+//             if ( map[i][j] == '1')
+//                 break ;
+//         }
+//         j = 0;
+//         i++;
+
+//     // controllare che ogni stringa inizi e finisca con un 1
+//     // controllare da ogni posizione con uno 0 (0, *(n<max_height) (*(n<max_width), 0)
+//     // veda come primo carattere un 1 (escludendo gli spazi)
+
+// }
+
 static char    **ft_mapparser(char *map_file)
 {
     char **map;
 
     map = ft_read_file(map_file);
     ft_check_charachters(map);
-    // ft_check_enclosure(map);
+    // ft_check_bounderies(map);
     return (map);
 }
 
