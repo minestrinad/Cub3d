@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/11/14 12:51:13 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/14 21:16:47 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void    parse_map(t_game game, char **file_content)
 	flipped_map = ft_flip_matrix(file_content, ft_matlen(file_content),
 		ft_get_matrix_maxlen(file_content));
 	check_map_boundaries(game, flipped_map);
+	ft_free_matrix(flipped_map);
 	// game.map.map = file_content;
 }
 
@@ -73,7 +74,6 @@ static void check_map_boundaries(t_game game, char **file_content)
 		while (splitted_line[j] && (ft_strchr(file_content[i], '0') ||
 			ft_strchr(file_content[i], '1')))
 		{
-			printf ("%s\n", splitted_line[j]);
 			if (splitted_line[j][0] != '1' ||
 				splitted_line[j][ft_strlen(splitted_line[j]) - 1] != '1')
 				ft_error(game, "file_content not properly closed\n");

@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 04:13:50 by emma              #+#    #+#             */
-/*   Updated: 2023/11/14 12:40:38 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:48:00 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	**ft_flip_matrix(char **mat, int height, int width)
 				new[i][j] = ' ';
 			j++;
 		}
-		printf ("%s\n", new[i]);
 		j = 0;
 		i++;
 	}

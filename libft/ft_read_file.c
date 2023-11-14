@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:45:16 by emma              #+#    #+#             */
-/*   Updated: 2023/11/13 15:34:57 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/14 21:28:42 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ char	**ft_read_file(char *map_file)
 	{
 		tmp = ft_lstnew(ft_strdup(line));
 		ft_lstadd_back(&map, tmp);
+		ft_strdel(&line);
 	}
 	close(fd);
 	map_matrix = ft_lst_to_matrix(map);
+	ft_lstdelone(tmp, free);
 	return (map_matrix);
 }
