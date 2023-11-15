@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/15 13:08:15 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:07:23 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,21 @@ typedef struct	s_player
 	char	dir;
 }				t_player;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*data;
+	int		bits_pixel;
+	int		line_len;
+	int		endian;
+}		t_img;
 
 typedef struct	s_game
 {
-	t_window	window;
+	t_window	*window;
 	t_map		map;
 	t_view		view;
+	t_img		*img;
 	// t_player	player;
 }				t_game;
 
@@ -109,5 +118,11 @@ void	ft_freegame(t_game game);
 // Window
 int		deal_keys(int key, t_game *game);
 int		ft_close(t_game *game);
+
+// mlx_utils
+void	my_mlx_pixel_put(t_game *data, int x, int y, int color);
+int		image(t_game *data);
+
+void	draw(t_game *game);
 
 #endif

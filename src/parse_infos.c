@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:18:54 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/15 13:16:10 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:17:27 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	parse_infos(t_game *game, char **map, int *end)
 	{
 		trimmed_line = ft_strtrim(map[*end], " ");
 		if (ft_strncmp(trimmed_line, NORTH_PATH, 3) == 0){
-			check += parse_texture_info(*game, map[*end], &(*game).view.north, (*game).window.mlx);
+			check += parse_texture_info(*game, map[*end], &(*game).view.north, (*game).window->mlx);
 			printf ("%p\n", (*game).view.north.img);}
 		else if (ft_strncmp(trimmed_line, SOUTH_PATH, 3) == 0)
-			check += parse_texture_info(*game, map[*end], &(*game).view.south, (*game).window.mlx);
+			check += parse_texture_info(*game, map[*end], &(*game).view.south, (*game).window->mlx);
 		else if (ft_strncmp(trimmed_line, EAST_PATH, 3) == 0)
-			check += parse_texture_info(*game, map[*end], &(*game).view.east, (*game).window.mlx);
+			check += parse_texture_info(*game, map[*end], &(*game).view.east, (*game).window->mlx);
 		else if (ft_strncmp(trimmed_line, WEST_PATH, 3) == 0)
-			check += parse_texture_info(*game, map[*end], &(*game).view.weast, (*game).window.mlx);
+			check += parse_texture_info(*game, map[*end], &(*game).view.weast, (*game).window->mlx);
 		else if (ft_strncmp(trimmed_line, CEALING, 1) == 0){
 			check += parse_color_info(*game, map[*end] + 1, &(*game).view.cealing);
 			printf ("%s\n", (*game).view.cealing[0]);}

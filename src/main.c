@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/15 13:07:40 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:17:05 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ static t_game ft_parse_input_file(t_game game, char *file)
 
 static void	ft_mlx(t_game *game)
 {
-	game->window.mlx = mlx_init();
-	game->window.win = mlx_new_window(game->window.mlx, 800, 500, "Cub3d");
-	mlx_hook(game->window.win, 17, 0L, ft_close, game);
-	mlx_hook(game->window.win, 2, 1L << 0, deal_keys, game);
-	mlx_loop(game->window.mlx);
+	game->window->mlx = mlx_init();
+	game->window->win = mlx_new_window(game->window->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
+	image(game);
+	mlx_hook(game->window->win, 17, 0L, ft_close, game);
+	mlx_hook(game->window->win, 2, 1L << 0, deal_keys, game);
+	mlx_loop(game->window->mlx);
 }
 
 int main(int argc, char **argv)
@@ -51,8 +52,5 @@ int main(int argc, char **argv)
 	printf ("%p\n", game.view.north.img);
 	// ft_error(game, "Hello World\n");
 	ft_mlx(&game);
-	// ft_window_manager(mlx, win);
-	// ft_game_loop(mlx, win);
-	// printf("Hello World\n");
 	return (0);
 }

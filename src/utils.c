@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:55:21 by emma              #+#    #+#             */
-/*   Updated: 2023/11/14 21:22:26 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:10:20 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	ft_freegame(t_game game)
 {
 	printf ("ft_freegame\n");
-	if (game.window.mlx)
-	ft_strdel(game.window.mlx);
-	if (game.window.win)
-	ft_strdel(game.window.win);
+	if (game.window->mlx)
+	ft_strdel(game.window->mlx);
+	if (game.window->win)
+	ft_strdel(game.window->win);
 
 	printf ("...\n");
 	if (game.map.map)
