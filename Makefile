@@ -4,6 +4,8 @@ SRCS = 	./src/main.c \
 		./src/parse_infos.c \
 		./src/parse_map.c \
 		./src/utils.c \
+		./src/deal_window.c \
+		./src/ft_close.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/14 12:22:21 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/15 13:08:15 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 500
+
+# define ESC 65307
+# define DX 65363
+# define SX 65361
+# define W 119
+# define A 97
+# define S 115
+# define D 100
 
 # define EMPTY          '0'
 # define WALL           '1'
@@ -97,4 +105,9 @@ void	parse_map(t_game, char **);
 // Utils
 void	ft_error(t_game, char *);
 void	ft_freegame(t_game game);
+
+// Window
+int		deal_keys(int key, t_game *game);
+int		ft_close(t_game *game);
+
 #endif
