@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 12:42:22 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:28:07 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
 		game = ft_parse_input_file(game, argv[1]);
 	else 
 		ft_error (game, "Usage: ./cub3d <map_name.cub>\n");
-	// handle_window(&game);
+	handle_window(&game);
 	ft_freegame(game);
 
 	return (0);
