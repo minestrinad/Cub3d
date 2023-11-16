@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 12:13:53 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:11:24 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ typedef struct	s_view
 
 typedef struct	s_player			//prendere pos da map
 {
-	int		x;
-	int		y;
-	char	dir;
+	char		start_dir;
+	double		x;
+	double		y;
 }				t_player;
 
 // typedef struct s_img
@@ -105,13 +105,13 @@ typedef struct	s_game
 	t_map		map;
 	t_view		view;
 	t_texture	test;
-	// t_player	player;
+	t_player	player;
 }				t_game;
 
 // Parsing
 
 int	parse_infos(t_game *, char **, int *);
-void	parse_map(t_game, char **);
+void	parse_map(t_game *, char **);
 
 // Utils
 void	ft_error(t_game, char *);

@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:18:54 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 12:31:08 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:45:20 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ int	parse_infos(t_game *game, char **map, int *end)
 	char	*trimmed_line;
 
 	check = 0;
-	printf ("end:: %i, matelen: %i\n", *end, ft_matlen(map));
-	while (*end < ft_matlen(map) && check < 6)
+	while (map[*end] && check < 6)
 	{
-		printf ("map[%i]:%s\n", *end, map[*end]);
 		trimmed_line = ft_strtrim(map[*end], " ");
 		if (ft_strncmp(trimmed_line, NORTH_PATH, 3) == 0)
 			check += parse_texture_info(*game, map[*end], &(*game).view.north, (*game).mlx_ptr);
