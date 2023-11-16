@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 14:14:13 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:41:23 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,37 @@ static void	handle_window(t_game *game)
 	mlx_loop((*game).mlx_ptr);
 }
 
+static t_player	player_data(double dir_x, double dir_y, \
+	double plane_x, double plane_y)
+{
+	t_player	player;
+
+	player.dir_x = dir_x;
+	player.dir_y = dir_y;
+	player.plane_x = plane_x;
+	player.plane_y = plane_y;
+	return (player);
+}
+
+static void	ft_init_player(t_game *game)
+{
+	double	x;
+	double	y;
+
+	x = game->player.x;
+	y = game->player.y;
+	if (game->player.start_dir == 'N')
+		game->player = player_data(-1, 0, 0, 0.66);
+	else if (game->player.start_dir == 'W')
+		game->player = player_data(0, -1, -0.66, 0);
+	else if (game->player.start_dir == 'S')
+		game->player = player_data(1, 0, 0, -0.66);
+	else if (game->player.start_dir == 'E')
+		game->player = player_data(0, 1, 0.66, 0);
+	game->player.x = x + 0.01;
+	game->player.y = y + 0.01;
+}
+
 int main(int argc, char **argv)
 {
 	t_game	game;
@@ -71,7 +102,8 @@ int main(int argc, char **argv)
 		game = ft_parse_input_file(game, argv[1]);
 	else 
 		ft_error (game, "Usage: ./cub3d <map_name.cub>\n");
-	// handle_window(&game);
+	ft_init_player(&game);
+	handle_window(&game);
 	ft_freegame(game);
 
 	return (0);

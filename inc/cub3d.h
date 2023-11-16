@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 14:15:16 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:14:27 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@
 # define ESC 65307
 # define DX 65363
 # define SX 65361
+# define N_S 0
+# define E_W 1
+# define NO 0
+# define SO 1
+# define EA 2
+# define WE 3
 # define W 119
 # define A 97
 # define S 115
@@ -90,18 +96,36 @@ typedef struct	s_player			//prendere pos da map
 	char		start_dir;
 	double		x;
 	double		y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 }				t_player;
 
 typedef struct	s_ray
 {
-	int		map_x;
-	int		map_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	ray_dir_x;
-	double	ray_dir_y;
+	int			if_hit;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			wall_dir;
+	int			draw_start;
+	int			draw_end;
+	int			line_height;
+	double		camera_x;
+	double		plane_x;
+	double		plane_y;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		delta_dis_x;
+	double		delta_dis_y;
+	double		side_dis_x;
+	double		side_dis_y;
+	double		p_wall_dis;
+	double		wall_x;
+	t_texture	texture;
 }				t_ray;
 
 // typedef struct s_img
@@ -138,5 +162,9 @@ void	my_mlx_pixel_put(t_game *data, int x, int y, int color);
 int		image(t_game *data);
 
 void	draw(t_game *game);
+
+// DDA
+void    ft_dda(t_game *game, t_ray *ray);
+void	calc_line_draw(t_game *game, t_ray *ray);
 
 #endif

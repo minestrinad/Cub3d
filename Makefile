@@ -8,6 +8,7 @@ SRCS = 	./src/main.c \
 		./src/ft_close.c \
 		./src/mlx_utils.c \
 		./src/draw.c \
+		./src/dda.c \
 
 OBJS = $(SRCS:.c=.o)
 
