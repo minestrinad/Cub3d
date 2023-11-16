@@ -6,54 +6,67 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/11/16 12:39:16 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:11:53 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
 static int     check_map_boundaries(t_game game, char **file_content);
-static int     validate_map_characters( t_game game, char **map);
+static int     validate_map_characters( t_game *game, char **map);
 
-void    parse_map(t_game game, char **file_content)
+void    parse_map(t_game *game, char **file_content)
 {	printf ("ft_parse_map\n");
 	char	**flipped_map;
 
 	validate_map_characters(game, file_content);
-	check_map_boundaries(game, file_content);
+	check_map_boundaries(*game, file_content);
 	flipped_map = ft_flip_matrix(file_content, ft_matlen(file_content),
 		ft_get_matrix_maxlen(file_content));
-	check_map_boundaries(game, flipped_map);
+	check_map_boundaries(*game, flipped_map);
 	ft_free_matrix(flipped_map);
+	printf ("...\n");
 	// game.map.map = file_content;
 }
 
-static int validate_map_characters( t_game game, char **map)
+static int save_player(t_game *game, char **map, int i, int j)
+{
+	printf ("ft_save_player\n");
+	if (ft_strchr(PLAYER, map[i][j]))
+	{
+		printf ("map[i][j]:%c\n", map[i][j]);
+		if ((*game).player.start_dir)
+			return (1);
+		(*game).player.start_dir = map[i][j];
+		(*game).player.x = i;
+		printf ("(*game).player.x:%f\n", (*game).player.x);
+		(*game).player.y = j;
+	}
+	return (0);
+}
+
+static int validate_map_characters( t_game *game, char **map)
 {	printf ("ft_check_characters\n");
 	int	i;
 	int	j;
-	int	player;
 
 	i = 0;
 	j = 0;
-	player = 0;
 	while (map[i])
 	{
 		while (map[i][j])
 		{
-			if (!ft_strchr(PLAYER, map[i][j]) && map[i][j] != EMPTY &&
-				map[i][j] != WALL && map[i][j] != '\n' && map[i][j] != ' ' &&
-				map[i][j] != '\0' || (player > 1))
+			if (!ft_strchr(PLAYER, map[i][j]) && map[i][j] != '0' &&
+				map[i][j] != '1' && map[i][j] != '\n' && map[i][j] != ' ' &&
+				map[i][j] != '\0')
 				return (1);
-			if (ft_strchr(PLAYER, map[i][j]))
-				player++;
+			if (save_player(game, map, i, j))
+				return (1);
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	if (player == 0)
-		return (1);
 	return (0);
 }
 

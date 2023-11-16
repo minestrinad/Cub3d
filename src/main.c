@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 13:28:07 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:14:13 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static t_game ft_parse_input_file(t_game game, char *file)
 		ft_free_matrix(file_content);
 		ft_error(game, "invalid file header\n");
 	}
-	parse_map(game, file_content + last_readed);
+	parse_map(&game, file_content + last_readed);
 	while (!ft_strchr(file_content[last_readed], '1'))
 		last_readed++;
 	game.map.map = file_content + last_readed;
-	ft_free_matrix(file_content);
+	// ft_free_matrix(file_content);
 	return (game);
 }
 
@@ -62,13 +62,16 @@ int main(int argc, char **argv)
 	game.view.cealing = NULL;
 	game.view.floor = NULL;
 	game.map.map = NULL;
+	game.player.start_dir = 0;
+	game.player.x = 0;
+	game.player.y = 0;
 	
 	game.mlx_ptr = mlx_init();
 	if (argc == 2)
 		game = ft_parse_input_file(game, argv[1]);
 	else 
 		ft_error (game, "Usage: ./cub3d <map_name.cub>\n");
-	handle_window(&game);
+	// handle_window(&game);
 	ft_freegame(game);
 
 	return (0);
