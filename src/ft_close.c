@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:04:34 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/15 19:34:57 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:27:46 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_close(t_game *game)
 {
-	mlx_destroy_image((*game).window.mlx, (*game).test.img);
-	mlx_destroy_window((*game).window.mlx, (*game).window.win);
-	mlx_destroy_display((*game).window.mlx);
+	mlx_destroy_image((*game).mlx_ptr, (*game).test.img);
+	mlx_destroy_window((*game).mlx_ptr, (*game).win_ptr);
+	mlx_destroy_display((*game).mlx_ptr);
 	//fare free di tutto
 	exit(0);
 	return (0);

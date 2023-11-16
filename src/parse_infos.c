@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:18:54 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 00:12:06 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:31:08 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	parse_infos(t_game *game, char **map, int *end)
 		printf ("map[%i]:%s\n", *end, map[*end]);
 		trimmed_line = ft_strtrim(map[*end], " ");
 		if (ft_strncmp(trimmed_line, NORTH_PATH, 3) == 0)
-			check += parse_texture_info(*game, map[*end], &(*game).view.north, (*game).window.mlx);
+			check += parse_texture_info(*game, map[*end], &(*game).view.north, (*game).mlx_ptr);
 		else if (ft_strncmp(trimmed_line, SOUTH_PATH, 3) == 0)
-			check += parse_texture_info(*game, map[*end], &(*game).view.south, (*game).window.mlx);
+			check += parse_texture_info(*game, map[*end], &(*game).view.south, (*game).mlx_ptr);
 		else if (ft_strncmp(trimmed_line, EAST_PATH, 3) == 0)
-			check += parse_texture_info(*game, map[*end], &(*game).view.east, (*game).window.mlx);
+			check += parse_texture_info(*game, map[*end], &(*game).view.east, (*game).mlx_ptr);
 		else if (ft_strncmp(trimmed_line, WEST_PATH, 3) == 0)
-			check += parse_texture_info(*game, map[*end], &(*game).view.weast, (*game).window.mlx);
+			check += parse_texture_info(*game, map[*end], &(*game).view.weast, (*game).mlx_ptr);
 		else if (ft_strncmp(trimmed_line, CEALING, 1) == 0)
 			check += parse_color_info(*game, map[*end] + 1, &(*game).view.cealing);
 		else if (ft_strncmp(trimmed_line, FLOOR, 1) == 0)
@@ -62,7 +62,6 @@ static int    parse_texture_info(t_game game, char *line, t_texture *texture, vo
 	(*texture).img = mlx_xpm_file_to_image(mlx, trimmed_line, &(*texture).width, &(*texture).height);
 	ft_strdel(&trimmed_line);
 	ft_free_matrix(str_split);
-	// printf ("questo e' il puntatore:%p, %i, %i\n", (*texture).img, (*texture).height, (*texture).width);
 	// (*texture).addr = mlx_get_data_addr((*texture).img, &(*texture).bits_pixel, &(*texture).line_len, &(*texture).endian);
 	return (1);
 }

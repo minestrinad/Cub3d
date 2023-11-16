@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 00:07:54 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:13:53 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@
 
 
 
-typedef struct	s_window
-{
-	void	*mlx;
-	void	*win;
-}				t_window;
+// typedef struct	s_window
+// {
+// 	void	*mlx;
+// 	void	*win;
+// }				t_window;
 
 typedef struct  s_map
 {
@@ -85,7 +85,7 @@ typedef struct	s_view
 	int			*floor;
 }				t_view;
 
-typedef struct	s_player
+typedef struct	s_player			//prendere pos da map
 {
 	int		x;
 	int		y;
@@ -100,7 +100,8 @@ typedef struct	s_player
 
 typedef struct	s_game
 {
-	t_window	window;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	t_map		map;
 	t_view		view;
 	t_texture	test;
