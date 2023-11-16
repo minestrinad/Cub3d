@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/15 15:07:23 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/16 00:07:54 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,12 @@ typedef struct  s_map
 typedef struct	s_texture
 {
 	void	*img;
+	void	*addr;
 	int		width;
 	int		height;
+	int		bits_pixel;
+	int		line_len;
+	int		endian;
 }				t_texture;
 
 
@@ -77,8 +81,8 @@ typedef struct	s_view
 	t_texture	south;
 	t_texture	east;
 	t_texture	weast;
-	char		**cealing;
-	char		**floor;
+	int			*cealing;
+	int			*floor;
 }				t_view;
 
 typedef struct	s_player
@@ -88,27 +92,24 @@ typedef struct	s_player
 	char	dir;
 }				t_player;
 
-typedef struct s_img
-{
-	void	*mlx_img;
-	char	*data;
-	int		bits_pixel;
-	int		line_len;
-	int		endian;
-}		t_img;
+// typedef struct s_img
+// {
+// 	void	*mlx_img;
+// 	char	*data;
+// }		t_img;
 
 typedef struct	s_game
 {
-	t_window	*window;
+	t_window	window;
 	t_map		map;
 	t_view		view;
-	t_img		*img;
+	t_texture	test;
 	// t_player	player;
 }				t_game;
 
 // Parsing
 
-void	parse_infos(t_game *, char **, int *);
+int	parse_infos(t_game *, char **, int *);
 void	parse_map(t_game, char **);
 
 // Utils

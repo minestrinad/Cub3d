@@ -52,9 +52,14 @@ fclean: clean
 # 	@printf "\033[0;32m norminette ./src/*.c ...\n\033[0m"
 # 	@norminette $(SRCS)
 
-# valgrind: all
-# 	@printf "\033[0;32m exe with valgrind...\n\033[0m"
-# 	@valgrind --show-leak-kinds=all --leak-check=full ./$(NAME)
+valgrind: all
+	@printf "\033[0;32m exe with valgrind...\n\033[0m"
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) default.cub
+
+fsaniter: fclean fclean $(OBJS)
+	@make -C ./libft
+	@printf "\033[0;32m exe with fsaniter...\n\033[0m"
+	@cc -g -fsanitize=address $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
 re: fclean all
 

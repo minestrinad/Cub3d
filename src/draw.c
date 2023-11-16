@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:49:12 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/15 15:03:52 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:28:50 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void	ft_draw_floor_ceiling(t_game *game, t_img *img, int floor_ceiling)
+static void	ft_draw_floor_ceiling(t_game *game, t_texture *img, int floor_ceiling)
 {
 	int	x;
 	int	y;
@@ -35,6 +35,6 @@ static void	ft_draw_floor_ceiling(t_game *game, t_img *img, int floor_ceiling)
 
 void	draw(t_game *game)
 {
-	ft_draw_floor_ceiling(game, game->img, 0);
-	ft_draw_floor_ceiling(game, game->img, 1);
+	ft_draw_floor_ceiling(game, &(*game).test, 0);
+	ft_draw_floor_ceiling(game, &(*game).test, 1);
 }

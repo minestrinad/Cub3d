@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:32:02 by everonel          #+#    #+#             */
-/*   Updated: 2022/10/10 14:34:29 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:43:20 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strdup(const char *s)
@@ -19,10 +20,8 @@ char	*ft_strdup(const char *s)
 
 	len = ft_strlen(s);
 	str = malloc(len + 1);
-	if (str == 0)
-	{
-		return (0);
-	}
+	if (!str)
+		return (NULL);
 	i = 0;
 	while (s[i] != '\0')
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:28:01 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/15 15:08:33 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:34:41 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	deal_keys(int key, t_game *game)
 {
 	if (check_keys(key))
 	{
-		mlx_destroy_image(game->window->mlx, game->img->mlx_img);
+		mlx_destroy_image((*game).window.mlx, (*game).test.img);
 		keys(key, game);
 		image(game);
 	}

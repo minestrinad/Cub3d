@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/11/14 21:16:47 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:10:15 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,24 @@ static void validate_map_characters( t_game game, char **map)
 		ft_error(game, "invalid character\n");
 }
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+static char** ft_splut(char *line)
+{
+	char **split;
+
+	split = calloc(1, sizeof(char *));
+	for (int i = 0; ; ++i)
+	{
+		split = realloc(split, sizeof(char *) * (i + 1));
+		split[i] = strtok_r(line, " ", &line);
+		if (!split[i])
+			break;
+	}
+	return split;
+}
 
 static void check_map_boundaries(t_game game, char **file_content) 
 {    printf ("ft_check_bounderies\n");
@@ -70,17 +88,21 @@ static void check_map_boundaries(t_game game, char **file_content)
 	while (i < ft_matlen(file_content) && file_content[i]) 
 	{
 		trimmed_line = ft_strtrim(file_content[i], " \n");
-		splitted_line = ft_split(trimmed_line, ' ');
+		splitted_line = ft_splut(trimmed_line);
 		while (splitted_line[j] && (ft_strchr(file_content[i], '0') ||
 			ft_strchr(file_content[i], '1')))
 		{
 			if (splitted_line[j][0] != '1' ||
 				splitted_line[j][ft_strlen(splitted_line[j]) - 1] != '1')
-				ft_error(game, "file_content not properly closed\n");
+				{
+					ft_free_matrix(splitted_line);
+					ft_strdel(&trimmed_line);
+					ft_error(game, "file_content not properly closed\n");
+				}
 			j++;
 		}
-		// ft_free_matrix(splitted_line);
-		// ft_strdel(&trimmed_line);
+		ft_free_matrix(splitted_line);
+		ft_strdel(&trimmed_line);
 		j = 0;
 		i++;
 	}
