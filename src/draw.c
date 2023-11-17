@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:49:12 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/17 13:24:23 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:47:14 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 		ray->text_y = (int)(ray->text_pos) & (ray->texture.height - 1);
 		ray->text_pos += ray->step;
 		color = get_pixel_color(ray->texture, ray->text_x, ray->text_y);
-		if (ray->side == E_W)
-			color = ft_make_shade(color);
+		// if (ray->side == E_W)
+		// 	color = ft_make_shade(color);
 		my_mlx_pixel_put(game, x, y, color);
 		y++;
 	}

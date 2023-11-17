@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:18:54 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/17 16:02:06 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:27:13 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ static int    parse_texture_info(t_game game, char *line, t_texture *texture, vo
 		i++;
 	if (i != 2)
 		return (0);
-	printf("line:[%s]\n", str_split[1]);
 	trimmed_line = ft_strtrim(str_split[1], " \n");
-	printf("line:[%s]\n", trimmed_line);
 	(*texture).img = mlx_xpm_file_to_image(mlx, trimmed_line, &(*texture).width, &(*texture).height);
 	ft_strdel(&trimmed_line);
 	ft_free_matrix(str_split);

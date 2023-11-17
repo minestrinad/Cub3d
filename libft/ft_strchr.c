@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:26:39 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/15 23:27:59 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:25:58 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,16 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	return (ft_memchr(s, c, ft_strlen(s)));
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (&((char *)s)[i]);
+		i++;
+	}
+	if (!c)
+		return (&((char *)s)[i]);
+	return (NULL);
 }

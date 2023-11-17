@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/11/16 14:11:53 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:35:09 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void    parse_map(t_game *game, char **file_content)
 
 static int save_player(t_game *game, char **map, int i, int j)
 {
-	printf ("ft_save_player\n");
 	if (ft_strchr(PLAYER, map[i][j]))
 	{
 		printf ("map[i][j]:%c\n", map[i][j]);
