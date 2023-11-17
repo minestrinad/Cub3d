@@ -9,6 +9,7 @@ SRCS = 	./src/main.c \
 		./src/mlx_utils.c \
 		./src/draw.c \
 		./src/dda.c \
+		./src/colors.c \
 
 OBJS = $(SRCS:.c=.o)
 

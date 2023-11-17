@@ -6,16 +6,11 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:49:12 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/16 16:08:42 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:24:23 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-static int	ft_rgb(int *color, int t)
-{
-	return (t << 24 | color[0] << 16 | color[1] << 8 | color[2]);
-}
 
 static void	ft_draw_floor_ceiling(t_game *game, t_texture *img, int floor_ceiling, int y)
 {
@@ -59,35 +54,35 @@ void	init_vars(t_game *game, int x, t_ray *ray)
 	ray->if_hit = 0;
 }
 
-void	init_step_and_side_dist(t_game *game, t_ray *ray)
+void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 {
-	if (ray->ray_dir_x < 0)
+	int	color;
+	int	y;
+
+	y = ray->draw_start;
+	ray->text_x = (int)(ray->wall_x * ray->texture.width);
+	if (ray->side == N_S && ray->ray_dir_x > 0)
+		ray->text_x = ray->texture.width - ray->text_x - 1;
+	if (ray->side == E_W && ray->ray_dir_y < 0)
+		ray->text_x = ray->texture.width - ray->text_x - 1;
+	ray->step = 1.0 * ray->texture.height / ray->line_height;
+	ray->text_pos = (ray->draw_start - WIN_HEIGHT / 2 + ray->line_height / 2) \
+		* ray->step;
+	while (y <= ray->draw_end)
 	{
-		ray->step_x = -1;
-		ray->side_dis_x = (game->player.x - ray->map_x) * ray->delta_dis_x;
-	}
-	else
-	{
-		ray->step_x = 1;
-		ray->delta_dis_x = (ray->map_x + 1.0 - game->player.x) * \
-			ray->delta_dis_x;
-	}
-	if (ray->ray_dir_y < 0)
-	{
-		ray->step_y = -1;
-		ray->side_dis_y = (game->player.y - ray->map_y) * ray->delta_dis_y;
-	}
-	else
-	{
-		ray->step_y = 1;
-		ray->delta_dis_y = (ray->map_y + 1.0 - game->player.y) * \
-			ray->delta_dis_y;
+		ray->text_y = (int)(ray->text_pos) & (ray->texture.height - 1);
+		ray->text_pos += ray->step;
+		color = get_pixel_color(ray->texture, ray->text_x, ray->text_y);
+		if (ray->side == E_W)
+			color = ft_make_shade(color);
+		my_mlx_pixel_put(game, x, y, color);
+		y++;
 	}
 }
 
 void	draw(t_game *game)
 {
-	t_ray	*ray;
+	t_ray	ray;
 	int		x;
 
 	ft_draw_floor_ceiling(game, &(*game).test, 0, 0);
@@ -100,6 +95,7 @@ void	draw(t_game *game)
 		ft_dda(game, &ray);
 		calc_line_draw(game, &ray);
 		choose_texture(game, &ray);
+		draw_vertical_line(game, &ray, x);
 		x++;
 	}
 }

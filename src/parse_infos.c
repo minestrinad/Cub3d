@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_infos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:18:54 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 13:45:20 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:15:13 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int    parse_texture_info(t_game game, char *line, t_texture *texture, vo
 	(*texture).img = mlx_xpm_file_to_image(mlx, trimmed_line, &(*texture).width, &(*texture).height);
 	ft_strdel(&trimmed_line);
 	ft_free_matrix(str_split);
-	// (*texture).addr = mlx_get_data_addr((*texture).img, &(*texture).bits_pixel, &(*texture).line_len, &(*texture).endian);
+	(*texture).pixels = mlx_get_data_addr((*texture).img, &(*texture).bits_pixel, &(*texture).line_len, &(*texture).endian);
 	return (1);
 }
 

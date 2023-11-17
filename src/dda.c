@@ -6,11 +6,37 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:17:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/16 16:16:49 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/17 12:46:14 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+void	init_step_and_side_dist(t_game *game, t_ray *ray)
+{
+	if (ray->ray_dir_x < 0)
+	{
+		ray->step_x = -1;
+		ray->side_dis_x = (game->player.x - ray->map_x) * ray->delta_dis_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->delta_dis_x = (ray->map_x + 1.0 - game->player.x) * \
+			ray->delta_dis_x;
+	}
+	if (ray->ray_dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dis_y = (game->player.y - ray->map_y) * ray->delta_dis_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->delta_dis_y = (ray->map_y + 1.0 - game->player.y) * \
+			ray->delta_dis_y;
+	}
+}
 
 void	calc_line_draw(t_game *game, t_ray *ray)
 {

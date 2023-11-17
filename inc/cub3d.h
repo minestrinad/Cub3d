@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 16:14:27 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:22:45 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct	s_texture
 {
 	void	*img;
 	void	*addr;
+	char	*pixels;
 	int		width;
 	int		height;
 	int		bits_pixel;
@@ -114,6 +115,8 @@ typedef struct	s_ray
 	int			draw_start;
 	int			draw_end;
 	int			line_height;
+	int			text_x;
+	int			text_y;
 	double		camera_x;
 	double		plane_x;
 	double		plane_y;
@@ -125,6 +128,8 @@ typedef struct	s_ray
 	double		side_dis_y;
 	double		p_wall_dis;
 	double		wall_x;
+	double		step;
+	double		text_pos;
 	t_texture	texture;
 }				t_ray;
 
@@ -163,8 +168,15 @@ int		image(t_game *data);
 
 void	draw(t_game *game);
 
+// colors
+int		ft_rgb(int *color, int t);
+int		get_pixel_color(t_texture texture, int x, int y);
+int		ft_make_shade(int color);
+
 // DDA
 void    ft_dda(t_game *game, t_ray *ray);
 void	calc_line_draw(t_game *game, t_ray *ray);
+void	init_step_and_side_dist(t_game *game, t_ray *ray);
+void	choose_texture(t_game *game, t_ray *ray);
 
 #endif
