@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/17 16:52:23 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/18 19:08:50 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,14 @@
 # define WALL           '1'
 # define PLAYER         "NSEW"
 
-# define NORTH_PATH     "NO ./"
-# define SOUTH_PATH     "SO ./"
-# define WEST_PATH      "WE ./"
-# define EAST_PATH      "EA ./"
+# define NORTH_PATH     "NO "
+# define SOUTH_PATH     "SO "
+# define WEST_PATH      "WE "
+# define EAST_PATH      "EA "
 # define CEALING        "C"
 # define FLOOR          "F"
 
 # define DEFAULT_MAP    "default.cub"
-
-
-
-
-// typedef struct	s_window
-// {
-// 	void	*mlx;
-// 	void	*win;
-// }				t_window;
-
-typedef struct  s_map
-{
-	char	**map;
-	int		map_width;
-	int		map_height;
-}				t_map;
 
 typedef struct	s_texture
 {
@@ -92,7 +76,7 @@ typedef struct	s_view
 	int			*floor;
 }				t_view;
 
-typedef struct	s_player			//prendere pos da map
+typedef struct	s_player
 {
 	char		start_dir;
 	double		x;
@@ -133,26 +117,21 @@ typedef struct	s_ray
 	t_texture	texture;
 }				t_ray;
 
-// typedef struct s_img
-// {
-// 	void	*mlx_img;
-// 	char	*data;
-// }		t_img;
-
 typedef struct	s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_map		map;
+	char		**map;
+	int			map_width;
+	int			map_height;
 	t_view		view;
 	t_texture	test;
 	t_player	player;
 }				t_game;
 
 // Parsing
-
-int	parse_infos(t_game *, char **, int *);
-void	parse_map(t_game *, char **);
+int		parse_infos(t_game *, char **, int *);
+int		parse_map(t_game *, char **);
 
 // Utils
 void	ft_error(t_game, char *);

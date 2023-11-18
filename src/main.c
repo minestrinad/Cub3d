@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/16 14:41:23 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/18 19:10:34 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 static t_game ft_parse_input_file(t_game game, char *file)
 {
 	char	**file_content;
-	int		last_readed;
+	int			last_readed;
 
 	last_readed = 0;
 	file_content = ft_read_file(file);
 	if (!file_content)
 		ft_error(game, "invalid file\n");
-	printf ("file_content[0]:%s\n", file_content[0]);
 	if (parse_infos(&game, file_content, &last_readed))
 	{
 		ft_free_matrix(file_content);
 		ft_error(game, "invalid file header\n");
 	}
-	parse_map(&game, file_content + last_readed);
-	while (!ft_strchr(file_content[last_readed], '1'))
-		last_readed++;
-	game.map.map = file_content + last_readed;
-	// ft_free_matrix(file_content);
+	if (parse_map(&game, file_content + last_readed))
+	{
+		ft_free_matrix(file_content);
+		ft_error(game, "invalid map\n");
+	}
+	ft_free_matrix(file_content);
 	return (game);
 }
 
@@ -76,35 +76,39 @@ static void	ft_init_player(t_game *game)
 	game->player.y = y + 0.01;
 }
 
+
+static void	init_game(t_game *game)
+{
+	(*game).mlx_ptr = NULL;
+	(*game).win_ptr = NULL;
+	(*game).view.north.img = NULL;
+	(*game).view.north.addr = NULL;
+	(*game).view.south.img = NULL;
+	(*game).view.south.addr = NULL;
+	(*game).view.east.img = NULL;
+	(*game).view.east.addr = NULL;
+	(*game).view.weast.img = NULL;
+	(*game).view.weast.addr = NULL;
+	(*game).view.cealing = NULL;
+	(*game).view.floor = NULL;
+	(*game).map = NULL;
+	(*game).player.start_dir = 0;
+	(*game).player.x = 0;
+	(*game).player.y = 0;
+}
+
 int main(int argc, char **argv)
 {
 	t_game	game;
 
-	game.mlx_ptr = NULL;
-	game.win_ptr = NULL;
-	game.view.north.img = NULL;
-	game.view.north.addr = NULL;
-	game.view.south.img = NULL;
-	game.view.south.addr = NULL;
-	game.view.east.img = NULL;
-	game.view.east.addr = NULL;
-	game.view.weast.img = NULL;
-	game.view.weast.addr = NULL;
-	game.view.cealing = NULL;
-	game.view.floor = NULL;
-	game.map.map = NULL;
-	game.player.start_dir = 0;
-	game.player.x = 0;
-	game.player.y = 0;
-	
+	init_game(&game);
 	game.mlx_ptr = mlx_init();
 	if (argc == 2)
 		game = ft_parse_input_file(game, argv[1]);
 	else 
 		ft_error (game, "Usage: ./cub3d <map_name.cub>\n");
-	ft_init_player(&game);
-	handle_window(&game);
+	// ft_init_player(&game);
+	// handle_window(&game);
 	ft_freegame(game);
-
 	return (0);
 }

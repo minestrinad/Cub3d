@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:48:56 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/15 23:21:14 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/18 16:37:10 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_free_matrix(char **str)
 	while (str[i])
 	{
 		ft_strdel(&str[i]);
+		free(str[i]);
 		i++;
 	}
 	free(str);

@@ -11,7 +11,7 @@ ft_strdel.c ft_free_matrix ft_get_matrix_maxlen.c\
 
 OBJS = ${SRCS:.c=.o}
 
-CC = cc -Wall -Wextra -Werror -c
+CC = cc -Wall -Wextra -Werror -c -g
 
 AR = ar -crs
 
