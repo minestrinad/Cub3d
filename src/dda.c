@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:17:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/18 16:50:44 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:39:45 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_step_and_side_dist(t_game *game, t_ray *ray)
 	else
 	{
 		ray->step_x = 1;
-		ray->delta_dis_x = (ray->map_x + 1.0 - game->player.x) * \
+		ray->side_dis_x = (ray->map_x + 1.0 - game->player.x) * \
 			ray->delta_dis_x;
 	}
 	if (ray->ray_dir_y < 0)
@@ -33,9 +33,11 @@ void	init_step_and_side_dist(t_game *game, t_ray *ray)
 	else
 	{
 		ray->step_y = 1;
-		ray->delta_dis_y = (ray->map_y + 1.0 - game->player.y) * \
+		ray->side_dis_y = (ray->map_y + 1.0 - game->player.y) * \
 			ray->delta_dis_y;
 	}
+	// printf("stepX:%d, sideDisX:%f, deltaDisX:%f\n", ray->step_x, ray->side_dis_x, ray->delta_dis_x);
+	// printf("stepY:%d, sideDisY:%f, deltaDisY:%f\n", ray->step_y, ray->side_dis_y, ray->delta_dis_y);
 }
 
 void	calc_line_draw(t_game *game, t_ray *ray)
@@ -45,10 +47,10 @@ void	calc_line_draw(t_game *game, t_ray *ray)
 	else
 		ray->p_wall_dis = (ray->side_dis_y - ray->delta_dis_y);
 	ray->line_height = (int)(WIN_HEIGHT / ray->p_wall_dis);
-	ray->draw_start = (-ray->line_height / 2) + (WIN_HEIGHT / 2);
+	ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = (ray->line_height / 2) + (WIN_HEIGHT / 2);
+	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_end >= WIN_HEIGHT)
 		ray->draw_end = WIN_HEIGHT - 1;
 	if (ray->side == N_S)
@@ -66,23 +68,23 @@ void	choose_texture(t_game *game, t_ray *ray)
 		ray->wall_dir == SO)
 		ray->texture = game->view.south;
 	else if (game->map[ray->map_x][ray->map_y] == '1' && \
-		ray->wall_dir == EA)
+		ray->wall_dir == WE)
 		ray->texture = game->view.east;
 	else if (game->map[ray->map_x][ray->map_y] == '1' && \
-		ray->wall_dir == WE)
+		ray->wall_dir == EA)
 		ray->texture = game->view.weast;
 }
 
 static void	set_wall_hit(t_ray *ray)
 {
 	if (ray->side == N_S && ray->step_x == -1)
-		ray->wall_dir = NO;
-	else if (ray->side == N_S && ray->step_x == 1)
 		ray->wall_dir = SO;
+	else if (ray->side == N_S && ray->step_x == 1)
+		ray->wall_dir = NO;
 	else if (ray->side == E_W && ray->step_y == -1)
-		ray->wall_dir = EA;
-	else if (ray->side == E_W && ray->step_y == 1)
 		ray->wall_dir = WE;
+	else if (ray->side == E_W && ray->step_y == 1)
+		ray->wall_dir = EA;
 }
 
 void	ft_dda(t_game *game, t_ray *ray)

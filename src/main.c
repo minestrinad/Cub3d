@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/21 12:57:11 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:09:52 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static void	ft_init_player(t_game *game)
 		game->player = player_data(1, 0, 0, -0.66);
 	else if (game->player.start_dir == 'E')
 		game->player = player_data(0, 1, 0.66, 0);
-	game->player.x = x + 0.01;
-	game->player.y = y + 0.01;
+	game->player.x = x + 0.5;
+	game->player.y = y + 0.5;
 }
 
 
@@ -107,19 +107,19 @@ int main(int argc, char **argv)
 		game = ft_parse_input_file(game, argv[1]);
 	else 
 		ft_error (game, "Usage: ./cub3d <map_name.cub>\n");
-	int i = 0;
-	while (game.map[i])
-	{
-		int y = 0;
-		while (game.map[i][y])
-		{
-			printf("%c", game.map[i][y]);
-			y++;
-		}
-		printf("\n");
-		i++;
-	}
-	// printf("\nmap[1][1]:%c\n", game.map[1][1]);
+	// int i = 0;
+	// while (game.map[i])
+	// {
+	// 	int y = 0;
+	// 	while (game.map[i][y])
+	// 	{
+	// 		printf("%c", game.map[i][y]);
+	// 		y++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
+	// printf("\nmap[8][8]:%c\n", game.map[8][8]);
 	// printf("x:%f, y:%f\n", game.player.x, game.player.y);
 	ft_init_player(&game);
 	handle_window(&game);
