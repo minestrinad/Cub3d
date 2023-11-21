@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/11/18 19:20:43 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:56:34 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ static char **save_map(char **mat)
 {
 	int		i;
 	char 	**map;
+	char	*trimmed_line;
 
 	i = 0;
 	map = NULL;
-	while (!ft_strchr(*mat, '1'))
+	while (*mat && (!ft_strchr(*mat, '1') && !ft_strchr(*mat, '0')))
 		mat++;
 	while (mat[i] && ft_strchr(mat[i], '1'))
 		i++;
@@ -27,10 +28,21 @@ static char **save_map(char **mat)
 	i = 0;
 	while (mat[i] && ft_strchr(mat[i], '1'))
 	{
-		map[i] = ft_strdup(mat[i]);
+		trimmed_line = ft_strtrim(mat[i], "\n");
+		map[i] = ft_strdup(trimmed_line);
+		ft_strdel(&trimmed_line);
 		i++;
 	}
 	map[i] = NULL;
+	i = 0;
+	int j;
+	while (map[i])
+	{
+		j = ft_strlen(map[i]) - 1;
+		while (map[i][j] == ' ')
+			map[i][j--] = '\0';
+		i++;
+	}
 	return (map);
 }
 
@@ -106,18 +118,21 @@ static int validate_map_characters(t_game *game, char **map)
 int    parse_map(t_game *game, char **file_content)
 {	printf ("ft_parse_map\n");
 	char	**flipped_map;
+	char	**brutto;
 
-	if (validate_map_characters(game, file_content))
+	brutto = save_map(file_content);
+	if (validate_map_characters(game, brutto))
 		return (1);
-	if (check_map_boundaries(*game, file_content))
+	if (check_map_boundaries(*game, brutto))
 		return (1);
-	flipped_map = ft_flip_matrix(file_content, ft_matlen(file_content),
-		ft_get_matrix_maxlen(file_content));
+	flipped_map = ft_flip_matrix(brutto, ft_matlen(brutto),
+		ft_get_matrix_maxlen(brutto));
 	if (check_map_boundaries(*game, flipped_map))
 		return (1);
 	(*game).map = save_map(file_content);
 	(*game).map_height = ft_matlen((*game).map);
 	(*game).map_width = ft_get_matrix_maxlen((*game).map);
+	ft_free_matrix(brutto);
 	ft_free_matrix(flipped_map);
 	return (0);
 }

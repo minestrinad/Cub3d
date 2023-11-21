@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/21 12:19:22 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:57:11 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,11 @@ int main(int argc, char **argv)
 			printf("%c", game.map[i][y]);
 			y++;
 		}
+		printf("\n");
 		i++;
 	}
-	printf("\nmap[1][1]:%c\n", game.map[1][1]);
-	printf("x:%f, y:%f\n", game.player.x, game.player.y);
+	// printf("\nmap[1][1]:%c\n", game.map[1][1]);
+	// printf("x:%f, y:%f\n", game.player.x, game.player.y);
 	ft_init_player(&game);
 	handle_window(&game);
 	ft_freegame(game);
