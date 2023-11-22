@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/22 12:35:01 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:26:37 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,10 +155,16 @@ int		ft_rgb(int *color, int t);
 int		get_pixel_color(t_texture texture, int x, int y);
 int		ft_make_shade(int color);
 
-// DDA
+// dda
 void    ft_dda(t_game *game, t_ray *ray);
 void	calc_line_draw(t_game *game, t_ray *ray);
 void	init_step_and_side_dist(t_game *game, t_ray *ray);
 void	choose_texture(t_game *game, t_ray *ray);
+
+// keys
+int	press_key_w(t_game *game);
+int	press_key_a(t_game *game);
+int	press_key_s(t_game *game);
+int	press_key_d(t_game *game);
 
 #endif

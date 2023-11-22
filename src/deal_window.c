@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:28:01 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/16 12:24:24 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:52:28 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,57 @@ static int	check_keys(int key)
 	return (0);
 }
 
+int	press_key_arr_right(t_game *game)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = game->player.dir_x;
+	old_plane_x = game->player.plane_x;
+	game->player.dir_x = game->player.dir_x * cos(-game->rot_speed) - \
+		game->player.dir_y * sin(-game->rot_speed);
+	game->player.dir_y = old_dir_x * sin(-game->rot_speed) + \
+		game->player.dir_y * cos(-game->rot_speed);
+	game->player.plane_x = game->player.plane_x * cos(-game->rot_speed) - \
+		game->player.plane_y * sin(-game->rot_speed);
+	game->player.plane_y = old_plane_x * sin(-game->rot_speed) + \
+		game->player.plane_y * cos(-game->rot_speed);
+	return (0);
+}
+
+int	press_key_arr_left(t_game *game)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = game->player.dir_x;
+	old_plane_x = game->player.plane_x;
+	game->player.dir_x = game->player.dir_x * cos(game->rot_speed) - \
+		game->player.dir_y * sin(game->rot_speed);
+	game->player.dir_y = old_dir_x * sin(game->rot_speed) + \
+		game->player.dir_y * cos(game->rot_speed);
+	game->player.plane_x = game->player.plane_x * cos(game->rot_speed) - \
+		game->player.plane_y * sin(game->rot_speed);
+	game->player.plane_y = old_plane_x * sin(game->rot_speed) + \
+		game->player.plane_y * cos(game->rot_speed);
+	return (0);	
+}
+
 static void	keys(int key, t_game *game)
 {
+	game->rot_speed = 0.1;
 	if (key == DX)
-		printf("Freccia destra\n");
+		press_key_arr_right(game);
 	else if (key == SX)
-		printf("Freccia sinistra\n");
+		press_key_arr_left(game);
 	else if (key == W)
-		printf("W\n");
+		press_key_w(game);
 	else if (key == A)
-		printf("A\n");
+		press_key_a(game);
 	else if (key == S)
-		printf("S\n");
+		press_key_s(game);
 	else if (key == D)
-		printf("D\n");
+		press_key_d(game);
 }
 
 int	deal_keys(int key, t_game *game)

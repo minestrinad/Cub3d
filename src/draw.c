@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:49:12 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/21 16:40:13 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:15:10 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ void	init_vars(t_game *game, int x, t_ray *ray)
 {
 	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
 	ray->ray_dir_x = game->player.dir_x + game->player.plane_x * ray->camera_x;
-	// printf("rayDirX:%f\n", ray->ray_dir_x);
 	ray->ray_dir_y = game->player.dir_y + game->player.plane_y * ray->camera_x;
-	// printf("rayDirY:%f\n", ray->ray_dir_y);
 	ray->map_x = (int)game->player.x;
 	ray->map_y = (int)game->player.y;
 	if (ray->ray_dir_x == 0)
@@ -53,8 +51,6 @@ void	init_vars(t_game *game, int x, t_ray *ray)
 		ray->delta_dis_y = 1e30;
 	else
 		ray->delta_dis_y = fabs(1 / ray->ray_dir_y);
-	// printf("rayDelX:%f\n", ray->delta_dis_x);
-	// printf("rayDelY:%f\n", ray->delta_dis_y);
 	ray->if_hit = 0;
 }
 
@@ -94,13 +90,10 @@ void	draw(t_game *game)
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
-		// printf("x:%d\n", x);
 		init_vars(game, x, &ray);
 		init_step_and_side_dist(game, &ray);
 		ft_dda(game, &ray);
 		calc_line_draw(game, &ray);
-		// if (x > 323 && x < WIN_WIDTH)
-		// 	printf("draw_start:%d, draw_end%d\n", ray.draw_start, ray.draw_end);
 		choose_texture(game, &ray);
 		draw_vertical_line(game, &ray, x);
 		x++;

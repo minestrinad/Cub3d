@@ -10,6 +10,7 @@ SRCS = 	./src/main.c \
 		./src/draw.c \
 		./src/dda.c \
 		./src/colors.c \
+		./src/keys.c \
 
 OBJS = $(SRCS:.c=.o)
 

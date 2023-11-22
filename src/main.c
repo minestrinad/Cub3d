@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/22 12:42:45 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:35:59 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static void	ft_init_player(t_game *game)
 		game->player = player_data(1, 0, 0, -0.66);
 	else if (game->player.start_dir == 'E')
 		game->player = player_data(0, 1, 0.66, 0);
-	game->player.x = x + 0.5;
-	game->player.y = y + 0.5;
+	game->player.x = x + 0.01;
+	game->player.y = y + 0.01;
 }
 
 
