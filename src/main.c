@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/21 17:09:52 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:42:45 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static void	init_game(t_game *game)
 {
 	(*game).mlx_ptr = NULL;
 	(*game).win_ptr = NULL;
+	(*game).frame = 0;
+	(*game).mov_speed = 0.1;
 	(*game).view.north.img = NULL;
 	(*game).view.north.addr = NULL;
 	(*game).view.south.img = NULL;

@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/21 16:39:24 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:35:01 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,9 @@ typedef struct	s_game
 	char		**map;
 	int			map_width;
 	int			map_height;
+	int			frame;
+	double		mov_speed;
+	double		rot_speed;
 	t_view		view;
 	t_texture	test;
 	t_player	player;
