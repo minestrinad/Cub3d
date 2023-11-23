@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:49:28 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/13 15:17:55 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:31:50 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ char 	**ft_read_file(char *map_file);
 char 	**ft_flip_matrix(char **matrix, int height, int width);
 int		flood_fill(int x, int y, char **map);
 void    ft_strdel(char **str);
-void    ft_free_matrix(char **str);
+char   **ft_free_matrix(char **str);
 int		ft_get_matrix_maxlen(char **mat);
 #endif

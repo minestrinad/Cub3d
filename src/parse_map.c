@@ -6,11 +6,12 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/11/21 12:56:34 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:35:24 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+#include <string.h>
 
 static char **save_map(char **mat)
 {
@@ -47,7 +48,7 @@ static char **save_map(char **mat)
 }
 
 static int check_map_boundaries(t_game game, char **f_c) 
-{    printf ("ft_check_bounderies\n");
+{    printf ("ft_check_boundaries\n");
 	int		i;
 	int		j;
 	char	*tline;
@@ -112,6 +113,8 @@ static int validate_map_characters(t_game *game, char **map)
 		j = 0;
 		i++;
 	}
+	if (!(*game).player.start_dir)
+		return (1);
 	return (0);
 }
 
@@ -121,15 +124,17 @@ int    parse_map(t_game *game, char **file_content)
 	char	**brutto;
 
 	brutto = save_map(file_content);
-	if (validate_map_characters(game, brutto))
+	if (validate_map_characters(game, brutto) || check_map_boundaries(*game, brutto))
+	{
+		ft_free_matrix(brutto);
 		return (1);
-	if (check_map_boundaries(*game, brutto))
-		return (1);
+	}
 	flipped_map = ft_flip_matrix(brutto, ft_matlen(brutto),
 		ft_get_matrix_maxlen(brutto));
 	if (check_map_boundaries(*game, flipped_map))
 		return (1);
 	(*game).map = save_map(file_content);
+	(*game).map[(int)(*game).player.x][(int)(*game).player.y] = '0';
 	(*game).map_height = ft_matlen((*game).map);
 	(*game).map_width = ft_get_matrix_maxlen((*game).map);
 	ft_free_matrix(brutto);

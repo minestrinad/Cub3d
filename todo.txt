@@ -1,0 +1,3 @@
+- controllare presenza player
+- mettere uno 0 nella posizione del player
+- controllo leak

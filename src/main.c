@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/22 15:35:59 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:14:22 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ static t_game ft_parse_input_file(t_game game, char *file)
 	last_readed = 0;
 	file_content = ft_read_file(file);
 	if (!file_content)
-		ft_error(game, "invalid file\n");
+		ft_error(&game, "invalid file\n");
 	if (parse_infos(&game, file_content, &last_readed))
 	{
 		ft_free_matrix(file_content);
-		ft_error(game, "invalid file header\n");
+		ft_error(&game, "invalid file header\n");
 	}
 	if (parse_map(&game, file_content + last_readed))
 	{
 		ft_free_matrix(file_content);
-		ft_error(game, "invalid map\n");
+		ft_error(&game, "invalid map\n");
 	}
 	ft_free_matrix(file_content);
 	return (game);
@@ -103,12 +103,13 @@ int main(int argc, char **argv)
 {
 	t_game	game;
 
+	memset(&game, 0, sizeof(t_game)); //aggiungi la libriraa dkjnedcjne
 	init_game(&game);
 	game.mlx_ptr = mlx_init();
 	if (argc == 2)
 		game = ft_parse_input_file(game, argv[1]);
 	else 
-		ft_error (game, "Usage: ./cub3d <map_name.cub>\n");
+		ft_error (&game, "Usage: ./cub3d <map_name.cub>\n");
 	// int i = 0;
 	// while (game.map[i])
 	// {

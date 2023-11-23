@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/22 15:26:37 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:09:14 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int		parse_infos(t_game *, char **, int *);
 int		parse_map(t_game *, char **);
 
 // Utils
-void	ft_error(t_game, char *);
+void	ft_error(t_game *, char *);
 void	ft_freegame(t_game game);
 
 // Window
