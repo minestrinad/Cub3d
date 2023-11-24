@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:28:01 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/22 15:52:28 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:44:42 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	press_key_arr_left(t_game *game)
 
 static void	keys(int key, t_game *game)
 {
-	game->rot_speed = 0.1;
+	if (!game->mouse_x)
+		game->rot_speed = 0.1;
 	if (key == DX)
 		press_key_arr_right(game);
 	else if (key == SX)

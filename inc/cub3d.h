@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/23 19:09:14 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:30:41 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ typedef struct	s_game
 	char		**map;
 	int			map_width;
 	int			map_height;
-	int			frame;
+	int			mouse_x;
+	int			mouse_y;
 	double		mov_speed;
 	double		rot_speed;
 	t_view		view;
@@ -162,9 +163,14 @@ void	init_step_and_side_dist(t_game *game, t_ray *ray);
 void	choose_texture(t_game *game, t_ray *ray);
 
 // keys
-int	press_key_w(t_game *game);
-int	press_key_a(t_game *game);
-int	press_key_s(t_game *game);
-int	press_key_d(t_game *game);
+int		press_key_w(t_game *game);
+int		press_key_a(t_game *game);
+int		press_key_s(t_game *game);
+int		press_key_d(t_game *game);
+int		press_key_arr_right(t_game *game);
+int		press_key_arr_left(t_game *game);
+
+// mouse
+int		deal_mouse(int x, int y, t_game *game);
 
 #endif

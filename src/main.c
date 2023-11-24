@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/23 20:14:22 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:27:03 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	handle_window(t_game *game)
 	image(game);
 	mlx_hook((*game).win_ptr, 17, 0L, ft_close, game);
 	mlx_hook((*game).win_ptr, 2, 1L << 0, deal_keys, game);
+	mlx_hook((*game).win_ptr, 6, 1L << 6, deal_mouse, game);
 	mlx_loop((*game).mlx_ptr);
 }
 
@@ -81,7 +82,8 @@ static void	init_game(t_game *game)
 {
 	(*game).mlx_ptr = NULL;
 	(*game).win_ptr = NULL;
-	(*game).frame = 0;
+	(*game).mouse_x = 0;
+	(*game).mouse_y = 0;
 	(*game).mov_speed = 0.1;
 	(*game).view.north.img = NULL;
 	(*game).view.north.addr = NULL;
@@ -103,7 +105,7 @@ int main(int argc, char **argv)
 {
 	t_game	game;
 
-	memset(&game, 0, sizeof(t_game)); //aggiungi la libriraa dkjnedcjne
+	ft_memset(&game, 0, sizeof(t_game)); //aggiungi la libriraa dkjnedcjne
 	init_game(&game);
 	game.mlx_ptr = mlx_init();
 	if (argc == 2)
@@ -123,7 +125,7 @@ int main(int argc, char **argv)
 	// 	i++;
 	// }
 	// printf("\nmap[8][8]:%c\n", game.map[8][8]);
-	// printf("x:%f, y:%f\n", game.player.x, game.player.y);
+	// printf("P:%c", game.map[(int)(game.player.x)][(int)(game.player.y)]);
 	ft_init_player(&game);
 	handle_window(&game);
 	ft_freegame(game);

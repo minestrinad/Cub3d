@@ -11,6 +11,7 @@ SRCS = 	./src/main.c \
 		./src/dda.c \
 		./src/colors.c \
 		./src/keys.c \
+		./src/mouse.c \
 
 OBJS = $(SRCS:.c=.o)
 

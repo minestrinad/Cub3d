@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:17:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/21 16:39:45 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:21:32 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	init_step_and_side_dist(t_game *game, t_ray *ray)
 		ray->side_dis_y = (ray->map_y + 1.0 - game->player.y) * \
 			ray->delta_dis_y;
 	}
-	// printf("stepX:%d, sideDisX:%f, deltaDisX:%f\n", ray->step_x, ray->side_dis_x, ray->delta_dis_x);
-	// printf("stepY:%d, sideDisY:%f, deltaDisY:%f\n", ray->step_y, ray->side_dis_y, ray->delta_dis_y);
 }
 
 void	calc_line_draw(t_game *game, t_ray *ray)
