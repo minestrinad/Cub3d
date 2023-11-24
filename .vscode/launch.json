@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/nfs/homes/everonel/Cub3d/src",
-      "program": "/nfs/homes/everonel/Cub3d/src/build/Debug/outDebug",
+      "cwd": "/nfs/homes/everonel/Cub3d/libft",
+      "program": "/nfs/homes/everonel/Cub3d/libft/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

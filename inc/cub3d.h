@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/24 12:30:41 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:54:54 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 500
@@ -53,7 +52,7 @@
 
 # define DEFAULT_MAP    "default.cub"
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	void	*img;
 	void	*addr;
@@ -65,8 +64,7 @@ typedef struct	s_texture
 	int		endian;
 }				t_texture;
 
-
-typedef struct	s_view
+typedef struct s_view
 {
 	t_texture	north;
 	t_texture	south;
@@ -76,7 +74,7 @@ typedef struct	s_view
 	int			*floor;
 }				t_view;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	char		start_dir;
 	double		x;
@@ -87,7 +85,7 @@ typedef struct	s_player
 	double		plane_y;
 }				t_player;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	int			if_hit;
 	int			map_x;
@@ -117,7 +115,7 @@ typedef struct	s_ray
 	t_texture	texture;
 }				t_ray;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -134,12 +132,13 @@ typedef struct	s_game
 }				t_game;
 
 // Parsing
-int		parse_infos(t_game *, char **, int *);
-int		parse_map(t_game *, char **);
+int		parse_infos(t_game *game, char **str, int *i);
+int		parse_map(t_game *game, char **str);
 
 // Utils
-void	ft_error(t_game *, char *);
+void	ft_error(t_game *game, char *str);
 void	ft_freegame(t_game game);
+void	handle_window(t_game *game);
 
 // Window
 int		deal_keys(int key, t_game *game);
@@ -157,7 +156,7 @@ int		get_pixel_color(t_texture texture, int x, int y);
 int		ft_make_shade(int color);
 
 // dda
-void    ft_dda(t_game *game, t_ray *ray);
+void	ft_dda(t_game *game, t_ray *ray);
 void	calc_line_draw(t_game *game, t_ray *ray);
 void	init_step_and_side_dist(t_game *game, t_ray *ray);
 void	choose_texture(t_game *game, t_ray *ray);

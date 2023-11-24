@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:28:01 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/24 12:44:42 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:35:20 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int	press_key_arr_left(t_game *game)
 		game->player.plane_y * sin(game->rot_speed);
 	game->player.plane_y = old_plane_x * sin(game->rot_speed) + \
 		game->player.plane_y * cos(game->rot_speed);
-	return (0);	
+	return (0);
 }
 
 static void	keys(int key, t_game *game)
 {
 	if (!game->mouse_x)
-		game->rot_speed = 0.1;
+		game->rot_speed = 0.07;
 	if (key == DX)
 		press_key_arr_right(game);
 	else if (key == SX)

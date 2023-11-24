@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:05:02 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/22 15:18:28 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:39:44 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	press_key_w(t_game *game)
 {
-	if (game->map[(int)(game->player.x + game->player.dir_x * game->mov_speed)]\
-		[(int)(game->player.y)] == '0')
+	if (game->map[(int)(game->player.x + game->player.dir_x * \
+		game->mov_speed)][(int)(game->player.y)] == '0')
 		game->player.x += game->player.dir_x * game->mov_speed;
-	if (game->map[(int)(game->player.x)]\
+	if (game->map[(int)(game->player.x)] \
 		[(int)((game->player.y + game->player.dir_y * game->mov_speed))] == '0')
 		game->player.y += game->player.dir_y * game->mov_speed;
 	return (0);
@@ -25,21 +25,21 @@ int	press_key_w(t_game *game)
 
 int	press_key_a(t_game *game)
 {
-	if (game->map[(int)(game->player.x - game->player.dir_y * game->mov_speed)]\
-		[(int)(game->player.y)] == '0')
+	if (game->map[(int)(game->player.x - game->player.dir_y * \
+		game->mov_speed)][(int)(game->player.y)] == '0')
 		game->player.x -= game->player.dir_y * game->mov_speed;
-	if (game->map[(int)(game->player.x)]\
+	if (game->map[(int)(game->player.x)] \
 		[(int)((game->player.y + game->player.dir_x * game->mov_speed))] == '0')
 		game->player.y += game->player.dir_x * game->mov_speed;
-	return (0);	
+	return (0);
 }
 
 int	press_key_s(t_game *game)
 {
-	if (game->map[(int)(game->player.x - game->player.dir_x * game->mov_speed)]\
-		[(int)(game->player.y)] == '0')
+	if (game->map[(int)(game->player.x - game->player.dir_x * \
+		game->mov_speed)][(int)(game->player.y)] == '0')
 		game->player.x -= game->player.dir_x * game->mov_speed;
-	if (game->map[(int)(game->player.x)]\
+	if (game->map[(int)(game->player.x)] \
 		[(int)((game->player.y - game->player.dir_y * game->mov_speed))] == '0')
 		game->player.y -= game->player.dir_y * game->mov_speed;
 	return (0);
@@ -47,10 +47,10 @@ int	press_key_s(t_game *game)
 
 int	press_key_d(t_game *game)
 {
-	if (game->map[(int)(game->player.x + game->player.dir_y * game->mov_speed)]\
-		[(int)(game->player.y)] == '0')
+	if (game->map[(int)(game->player.x + game->player.dir_y * \
+		game->mov_speed)][(int)(game->player.y)] == '0')
 		game->player.x += game->player.dir_y * game->mov_speed;
-	if (game->map[(int)(game->player.x)]\
+	if (game->map[(int)(game->player.x)] \
 		[(int)((game->player.y - game->player.dir_x * game->mov_speed))] == '0')
 		game->player.y -= game->player.dir_x * game->mov_speed;
 	return (0);

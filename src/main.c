@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/24 12:27:03 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:43:51 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static t_game ft_parse_input_file(t_game game, char *file)
+static t_game	ft_parse_input_file(t_game game, char *file)
 {
 	char	**file_content;
-	int			last_readed;
+	int		last_readed;
 
 	last_readed = 0;
 	file_content = ft_read_file(file);
@@ -33,17 +33,6 @@ static t_game ft_parse_input_file(t_game game, char *file)
 	}
 	ft_free_matrix(file_content);
 	return (game);
-}
-
-static void	handle_window(t_game *game)
-{
-	// game->window->mlx = mlx_init();
-	(*game).win_ptr = mlx_new_window((*game).mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
-	image(game);
-	mlx_hook((*game).win_ptr, 17, 0L, ft_close, game);
-	mlx_hook((*game).win_ptr, 2, 1L << 0, deal_keys, game);
-	mlx_hook((*game).win_ptr, 6, 1L << 6, deal_mouse, game);
-	mlx_loop((*game).mlx_ptr);
 }
 
 static t_player	player_data(double dir_x, double dir_y, \
@@ -77,7 +66,6 @@ static void	ft_init_player(t_game *game)
 	game->player.y = y + 0.01;
 }
 
-
 static void	init_game(t_game *game)
 {
 	(*game).mlx_ptr = NULL;
@@ -101,31 +89,17 @@ static void	init_game(t_game *game)
 	(*game).player.y = 0;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	ft_memset(&game, 0, sizeof(t_game)); //aggiungi la libriraa dkjnedcjne
+	ft_memset(&game, 0, sizeof(t_game));
 	init_game(&game);
 	game.mlx_ptr = mlx_init();
 	if (argc == 2)
 		game = ft_parse_input_file(game, argv[1]);
-	else 
+	else
 		ft_error (&game, "Usage: ./cub3d <map_name.cub>\n");
-	// int i = 0;
-	// while (game.map[i])
-	// {
-	// 	int y = 0;
-	// 	while (game.map[i][y])
-	// 	{
-	// 		printf("%c", game.map[i][y]);
-	// 		y++;
-	// 	}
-	// 	printf("\n");
-	// 	i++;
-	// }
-	// printf("\nmap[8][8]:%c\n", game.map[8][8]);
-	// printf("P:%c", game.map[(int)(game.player.x)][(int)(game.player.y)]);
 	ft_init_player(&game);
 	handle_window(&game);
 	ft_freegame(game);

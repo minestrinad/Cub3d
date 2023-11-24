@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 15:42:20 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/23 21:25:32 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:51:26 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static size_t	get_matrix_second_len(char const *str, size_t start, char c)
 	size_t	i;
 
 	i = 0;
-	while (str[start] && str[start] != c )
+	while (str[start] && str[start] != c)
 	{
 		start++;
 		i++;

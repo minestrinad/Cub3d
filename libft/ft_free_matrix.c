@@ -6,13 +6,13 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:48:56 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/23 21:36:54 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:49:28 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char**	ft_free_matrix(char **str)
+char	**ft_free_matrix(char **str)
 {
 	int	i;
 
@@ -21,7 +21,6 @@ char**	ft_free_matrix(char **str)
 		return (NULL);
 	while (str[i])
 	{
-		//ft_strdel(&str[i]);
 		free(str[i]);
 		str[i] = NULL;
 		i++;

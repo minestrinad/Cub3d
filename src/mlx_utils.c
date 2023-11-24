@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:32:51 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/22 16:49:47 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:44:01 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	draw_square_player(t_game *data, int x, int y, int color)
 			i++;
 		}
 		k++;
-	}	
+	}
 }
 
 void	draw_square(t_game *data, int x, int y, int color)

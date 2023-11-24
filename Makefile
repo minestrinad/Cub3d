@@ -15,7 +15,7 @@ SRCS = 	./src/main.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -g -c
+CFLAGS = -g -Wall -Wextra -Werror -c
 
 MLX_FLAGS = -L./mlx_linux -lmlx -lXext -lX11 -lm -lz
 

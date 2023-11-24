@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:49:12 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/22 16:15:10 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:56:50 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void	ft_draw_floor_ceiling(t_game *game, t_texture *img, int floor_ceiling, int y)
+static void	ft_draw_floor_ceiling(t_game *game, int floor_ceiling, int y)
 {
 	int	x;
-	int k;
+	int	k;
 
 	if (floor_ceiling == 0)
 		k = WIN_HEIGHT;
@@ -73,8 +73,6 @@ void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 		ray->text_y = (int)ray->text_pos & (ray->texture.height - 1);
 		ray->text_pos += ray->step;
 		color = get_pixel_color(ray->texture, ray->text_x, ray->text_y);
-		// if (ray->side == E_W)
-		// 	color = ft_make_shade(color);
 		my_mlx_pixel_put(game, x, y, color);
 		y++;
 	}
@@ -85,8 +83,8 @@ void	draw(t_game *game)
 	t_ray	ray;
 	int		x;
 
-	ft_draw_floor_ceiling(game, &(*game).test, 0, WIN_HEIGHT / 2);
-	ft_draw_floor_ceiling(game, &(*game).test, 1, 0);
+	ft_draw_floor_ceiling(game, 0, WIN_HEIGHT / 2);
+	ft_draw_floor_ceiling(game, 1, 0);
 	x = 0;
 	while (x < WIN_WIDTH)
 	{

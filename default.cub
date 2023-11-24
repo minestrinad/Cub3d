@@ -1,10 +1,10 @@
-NO ./img/north_64.xpm
+NO ./img/north.xpm
 
-WE ./img/weast_64.xpm
+WE ./img/weast.xpm
 
-EA ./img/east_64.xpm
+EA ./img/east.xpm
 
-SO ./img/south_64.xpm
+SO ./img/south.xpm
 
 F 220,100,0
 

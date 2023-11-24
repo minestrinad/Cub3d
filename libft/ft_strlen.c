@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:39:38 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/15 23:55:05 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:52:08 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	while ( s && s[i] != '\0') {
+	while (s && s[i] != '\0')
 		i++;
-	}
 	return (i);
 }

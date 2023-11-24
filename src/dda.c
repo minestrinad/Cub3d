@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:17:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/24 12:21:32 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:35:00 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ft_dda(t_game *game, t_ray *ray)
 		{
 			ray->side_dis_y += ray->delta_dis_y;
 			ray->map_y += ray->step_y;
-			ray->side = E_W;			
+			ray->side = E_W;
 		}
 		if (game->map[ray->map_x][ray->map_y] == '1')
 			ray->if_hit = 1;
