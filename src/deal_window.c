@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:28:01 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/24 16:35:20 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:53:33 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_keys(int key)
 	return (0);
 }
 
-int	press_key_arr_right(t_game *game)
+static int	press_key_arr_right(t_game *game)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -39,7 +39,7 @@ int	press_key_arr_right(t_game *game)
 	return (0);
 }
 
-int	press_key_arr_left(t_game *game)
+static int	press_key_arr_left(t_game *game)
 {
 	double	old_dir_x;
 	double	old_plane_x;

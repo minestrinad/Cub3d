@@ -1,3 +1,8 @@
-- controllare presenza player
-- mettere uno 0 nella posizione del player
-- controllo leak
+- cambiare parsing per il file header, 
+    esempio al momento in map2.cub.
+- fare ft_realloc
+- ho nominato la mappa wrong.c che 
+    teniamo come mappa sbagliata, 
+    poi decidiamo meglio cosa mettere di sbagliato.
+- ho creato la cartella maps che cosi' e' 
+    piu' ordinato.

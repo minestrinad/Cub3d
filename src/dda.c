@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:17:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/24 16:35:00 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:01:02 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,6 @@ void	calc_line_draw(t_game *game, t_ray *ray)
 	else
 		ray->wall_x = game->player.x + ray->p_wall_dis * ray->ray_dir_x;
 	ray->wall_x -= floor(ray->wall_x);
-}
-
-void	choose_texture(t_game *game, t_ray *ray)
-{
-	if (game->map[ray->map_x][ray->map_y] == '1' && ray->wall_dir == NO)
-		ray->texture = game->view.north;
-	else if (game->map[ray->map_x][ray->map_y] == '1' && \
-		ray->wall_dir == SO)
-		ray->texture = game->view.south;
-	else if (game->map[ray->map_x][ray->map_y] == '1' && \
-		ray->wall_dir == WE)
-		ray->texture = game->view.east;
-	else if (game->map[ray->map_x][ray->map_y] == '1' && \
-		ray->wall_dir == EA)
-		ray->texture = game->view.weast;
 }
 
 static void	set_wall_hit(t_ray *ray)

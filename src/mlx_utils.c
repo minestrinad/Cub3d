@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:32:51 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/24 16:44:01 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:17:42 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,62 +22,15 @@ void	my_mlx_pixel_put(t_game *data, int x, int y, int color)
 	*(unsigned int *)i = color;
 }
 
-void	draw_square_player(t_game *data, int x, int y, int color)
+void	handle_window(t_game *game)
 {
-	int	i;
-	int	k;
-
-	k = 0;
-	while (k < 3)
-	{
-		i = 0;
-		while (i < 3)
-		{
-			my_mlx_pixel_put(data, x + k, y + i, color);
-			i++;
-		}
-		k++;
-	}
-}
-
-void	draw_square(t_game *data, int x, int y, int color)
-{
-	int	i;
-	int	k;
-
-	k = 0;
-	while (k < 5)
-	{
-		i = 0;
-		while (i < 5)
-		{
-			my_mlx_pixel_put(data, x + k, y + i, color);
-			i++;
-		}
-		k++;
-	}
-}
-
-void	draw_minimap(t_game *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == '1')
-				draw_square(data, x * 5, y * 5, 0XFFFFFF);
-			else if (data->map[y][x] == '0')
-				draw_square(data, x * 5, y * 5, 0x000000);
-			x++;
-		}
-		y++;
-	}
-	draw_square_player(data, data->player.y * 5, data->player.x * 5, 0xb000f5);
+	(*game).win_ptr = mlx_new_window((*game).mlx_ptr, WIN_WIDTH, WIN_HEIGHT, \
+		"Cub3d");
+	image(game);
+	mlx_hook((*game).win_ptr, 17, 0L, ft_close, game);
+	mlx_hook((*game).win_ptr, 2, 1L << 0, deal_keys, game);
+	mlx_hook((*game).win_ptr, 6, 1L << 6, deal_mouse, game);
+	mlx_loop((*game).mlx_ptr);
 }
 
 int	image(t_game *data)

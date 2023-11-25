@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/24 16:54:54 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:58:42 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,41 +135,47 @@ typedef struct s_game
 int		parse_infos(t_game *game, char **str, int *i);
 int		parse_map(t_game *game, char **str);
 
+// init
+void	init_game(t_game *game);
+void	ft_init_player(t_game *game);
+void	init_vars(t_game *game, int x, t_ray *ray);
+
 // Utils
 void	ft_error(t_game *game, char *str);
 void	ft_freegame(t_game game);
-void	handle_window(t_game *game);
+int		ft_close(t_game *game);
 
 // Window
 int		deal_keys(int key, t_game *game);
-int		ft_close(t_game *game);
 
 // mlx_utils
 void	my_mlx_pixel_put(t_game *data, int x, int y, int color);
+void	handle_window(t_game *game);
 int		image(t_game *data);
 
+// draw
 void	draw(t_game *game);
 
 // colors
 int		ft_rgb(int *color, int t);
+void	choose_texture(t_game *game, t_ray *ray);
 int		get_pixel_color(t_texture texture, int x, int y);
-int		ft_make_shade(int color);
 
 // dda
 void	ft_dda(t_game *game, t_ray *ray);
 void	calc_line_draw(t_game *game, t_ray *ray);
 void	init_step_and_side_dist(t_game *game, t_ray *ray);
-void	choose_texture(t_game *game, t_ray *ray);
 
 // keys
 int		press_key_w(t_game *game);
 int		press_key_a(t_game *game);
 int		press_key_s(t_game *game);
 int		press_key_d(t_game *game);
-int		press_key_arr_right(t_game *game);
-int		press_key_arr_left(t_game *game);
 
 // mouse
 int		deal_mouse(int x, int y, t_game *game);
+
+// minimap
+void	draw_minimap(t_game *data);
 
 #endif

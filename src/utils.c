@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:55:21 by emma              #+#    #+#             */
-/*   Updated: 2023/11/24 16:58:40 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:17:30 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ void	ft_freegame(t_game game)
 		mlx_destroy_window(game.mlx_ptr, game.win_ptr);
 }
 
+int	ft_close(t_game *game)
+{
+	ft_freegame(*game);
+	mlx_destroy_image((*game).mlx_ptr, (*game).test.img);
+	mlx_destroy_display((*game).mlx_ptr);
+	free((*game).mlx_ptr);
+	exit(0);
+	return (0);
+}
+
 void	ft_error(t_game *game, char *str)
 {
 	ft_freegame(*game);
@@ -45,15 +55,4 @@ void	ft_error(t_game *game, char *str)
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
 	exit(0);
-}
-
-void	handle_window(t_game *game)
-{
-	(*game).win_ptr = mlx_new_window((*game).mlx_ptr, WIN_WIDTH, WIN_HEIGHT, \
-		"Cub3d");
-	image(game);
-	mlx_hook((*game).win_ptr, 17, 0L, ft_close, game);
-	mlx_hook((*game).win_ptr, 2, 1L << 0, deal_keys, game);
-	mlx_hook((*game).win_ptr, 6, 1L << 6, deal_mouse, game);
-	mlx_loop((*game).mlx_ptr);
 }

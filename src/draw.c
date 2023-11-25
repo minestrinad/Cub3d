@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:49:12 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/24 16:56:50 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:58:52 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,7 @@ static void	ft_draw_floor_ceiling(t_game *game, int floor_ceiling, int y)
 	}
 }
 
-void	init_vars(t_game *game, int x, t_ray *ray)
-{
-	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
-	ray->ray_dir_x = game->player.dir_x + game->player.plane_x * ray->camera_x;
-	ray->ray_dir_y = game->player.dir_y + game->player.plane_y * ray->camera_x;
-	ray->map_x = (int)game->player.x;
-	ray->map_y = (int)game->player.y;
-	if (ray->ray_dir_x == 0)
-		ray->delta_dis_x = 1e30;
-	else
-		ray->delta_dis_x = fabs(1 / ray->ray_dir_x);
-	if (ray->ray_dir_y == 0)
-		ray->delta_dis_y = 1e30;
-	else
-		ray->delta_dis_y = fabs(1 / ray->ray_dir_y);
-	ray->if_hit = 0;
-}
-
-void	draw_vertical_line(t_game *game, t_ray *ray, int x)
+static void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 {
 	int	color;
 	int	y;

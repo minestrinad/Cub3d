@@ -1,11 +1,12 @@
 NAME = cub3d
 
 SRCS = 	./src/main.c \
+		./src/init.c \
 		./src/parse_infos.c \
 		./src/parse_map.c \
 		./src/utils.c \
 		./src/deal_window.c \
-		./src/ft_close.c \
+		./src/minimap.c \
 		./src/mlx_utils.c \
 		./src/draw.c \
 		./src/dda.c \
