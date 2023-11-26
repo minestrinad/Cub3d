@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:55:21 by emma              #+#    #+#             */
-/*   Updated: 2023/11/25 11:17:30 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/26 21:49:26 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+// #include <stdio.h>
+// #include <string.h>
+
+int	stris_empty(char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] && ft_strchr(" \t\n", src[i]))
+		i++;
+	if (!src[i])
+		return (0);
+	return (1);
+}
+
+
 
 void	ft_freegame(t_game game)
 {

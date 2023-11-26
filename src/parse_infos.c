@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_infos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:18:54 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/24 16:46:28 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/26 21:48:17 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	parse_texture_info(t_game game, char *line, t_texture *texture)
 {
 	char	**str_split;
 
+	if ((*texture).img)
+		return (0);
 	str_split = ft_split(line, ' ');
 	if (!str_split[1] || str_split[2])
 		return (0);
@@ -76,6 +78,8 @@ static int	check_ifis_info(t_game *game, char *line, int *check)
 		*check += parse_color_info(line + 1, &(*game).view.cealing);
 	else if (ft_strncmp(line, FLOOR, 1) == 0)
 		*check += parse_color_info(line + 1, &(*game).view.floor);
+	else if (stris_empty(line))
+		return (1);
 	return (0);
 }
 
@@ -93,7 +97,7 @@ int	parse_infos(t_game *game, char **file_content, int *end)
 		ft_strdel(&trimmed_line);
 		*end += 1;
 	}
-	if (check < 6)
+	if (check != 6)
 		return (1);
 	return (0);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/11/24 16:56:12 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/26 22:09:01 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static char	**save_map(char **mat)
+static char	**save_map(char **mat, int len)
 {
 	int		i;
 	int		j;
@@ -20,13 +20,11 @@ static char	**save_map(char **mat)
 	char	*trimmed_line;
 
 	i = 0;
-	map = NULL;
-	while (*mat && (!ft_strchr(*mat, '1') && !ft_strchr(*mat, '0')))
-		mat++;
-	while (mat[i] && ft_strchr(mat[i], '1'))
+	while (!stris_empty(mat[i]))
 		i++;
-	map = (char **)ft_calloc(sizeof(char *), i + 1);
+	mat += i;
 	i = 0;
+	map = (char **)ft_calloc(sizeof(char *), len + 1);
 	while (mat[i] && ft_strchr(mat[i], '1'))
 	{
 		trimmed_line = ft_strtrim(mat[i], "\n");
@@ -41,7 +39,35 @@ static char	**save_map(char **mat)
 	return (map);
 }
 
-static int	check_map_boundaries(char **f_c)
+static int	validate_player(t_game *game, char **map)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while(map[i])
+	{
+		while (map[i][j])
+		{
+			if (ft_strchr("NSEW", map[i][j]))
+			{
+				if ((*game).player.start_dir)
+					return (1);
+				(*game).player.x = i;
+				(*game).player.y = j;
+				(*game).player.start_dir = map[i][j];
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	if (!(*game).player.start_dir)
+		return (1);
+	return (0);
+}
+static int	validate_map_boundaries(char **f_c)
 {
 	int		i;
 	int		j;
@@ -57,7 +83,7 @@ static int	check_map_boundaries(char **f_c)
 		while (sline[j] && (ft_strchr(f_c[i], '0') || ft_strchr(f_c[i], '1')))
 		{
 			if (sline[j][0] != '1' || sline[j][ft_strlen(sline[j]) - 1] != '1')
-				return (ft_free_matrix(sline), ft_strdel(&tline), 1);
+				return (ft_free_matrix(sline), ft_strdel(&tline), 0);
 			j++;
 		}
 		ft_free_matrix(sline);
@@ -65,73 +91,44 @@ static int	check_map_boundaries(char **f_c)
 		j = 0;
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
-static int	save_player(t_game *game, char **map, int i, int j)
-{
-	if (ft_strchr(PLAYER, map[i][j]))
-	{
-		if ((*game).player.start_dir)
-			return (1);
-		(*game).player.start_dir = map[i][j];
-		(*game).player.x = i;
-		(*game).player.y = j;
-	}
-	return (0);
-}
 
-static int	validate_map_characters(t_game *game, char **map)
+static int	validate_map_line(char *line)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map[i])
-	{
-		while (map[i][j])
-		{
-			if (!ft_strchr(PLAYER, map[i][j]) && map[i][j] != '0' &&
-				map[i][j] != '1' && map[i][j] != '\n' && map[i][j] != ' ' &&
-				map[i][j] != '\0')
-				return (1);
-			if (save_player(game, map, i, j))
-				return (1);
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	if (!(*game).player.start_dir)
+	if (!line || !stris_empty(line))
 		return (1);
-	return (0);
+	while (*line && ft_strchr(" \n012NSEW", *line))
+		line++;
+	if (*line)
+		return (0);
+	return (1);
 }
 
 int	parse_map(t_game *game, char **file_content)
 {
+	int 	map_end;
+	int		map_start;
 	char	**flipped_map;
-	char	**tmp;
 
-	tmp = save_map(file_content);
-	if (validate_map_characters(game, tmp) || check_map_boundaries(tmp))
-	{
-		ft_free_matrix(tmp);
-		return (1);
-	}
-	flipped_map = ft_flip_matrix(tmp, ft_matlen(tmp), \
-		ft_get_matrix_maxlen(tmp));
-	if (check_map_boundaries(flipped_map))
-	{
-		ft_free_matrix(tmp);
-		ft_free_matrix(flipped_map);
-		return (1);
-	}
-	(*game).map = save_map(file_content);
-	(*game).map[(int)(*game).player.x][(int)(*game).player.y] = '0';
+	map_start = 0;
+	while (file_content[map_start] && validate_map_line(file_content[map_start]))
+		map_start++;
+	if (file_content[map_start])
+		return (0);
+	map_start = 0;
+	flipped_map = ft_flip_matrix(file_content, ft_matlen(file_content), \
+		ft_get_matrix_maxlen(file_content));
+	if (!validate_map_boundaries(file_content) || !validate_map_boundaries(flipped_map))
+		return (ft_free_matrix(flipped_map), 0);
+	map_end = ft_get_matrix_maxlen(flipped_map);
+	ft_free_matrix(flipped_map);
+	(*game).map = save_map(file_content, map_end);
 	(*game).map_height = ft_matlen((*game).map);
 	(*game).map_width = ft_get_matrix_maxlen((*game).map);
-	ft_free_matrix(tmp);
-	ft_free_matrix(flipped_map);
-	return (0);
+	if (validate_player(game, (*game).map))
+		return (0);
+	(*game).map[(int)(*game).player.x][(int)(*game).player.y] = '0';
+	return (1);
 }
