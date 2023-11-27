@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/11/26 22:09:01 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:01:08 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	validate_player(t_game *game, char **map)
 
 	i = 0;
 	j = 0;
-	while(map[i])
+	while (map[i])
 	{
 		while (map[i][j])
 		{
@@ -67,6 +67,7 @@ static int	validate_player(t_game *game, char **map)
 		return (1);
 	return (0);
 }
+
 static int	validate_map_boundaries(char **f_c)
 {
 	int		i;
@@ -94,7 +95,6 @@ static int	validate_map_boundaries(char **f_c)
 	return (1);
 }
 
-
 static int	validate_map_line(char *line)
 {
 	if (!line || !stris_empty(line))
@@ -108,19 +108,21 @@ static int	validate_map_line(char *line)
 
 int	parse_map(t_game *game, char **file_content)
 {
-	int 	map_end;
+	int		map_end;
 	int		map_start;
 	char	**flipped_map;
 
 	map_start = 0;
-	while (file_content[map_start] && validate_map_line(file_content[map_start]))
+	while (file_content[map_start] && \
+		validate_map_line(file_content[map_start]))
 		map_start++;
 	if (file_content[map_start])
 		return (0);
 	map_start = 0;
 	flipped_map = ft_flip_matrix(file_content, ft_matlen(file_content), \
 		ft_get_matrix_maxlen(file_content));
-	if (!validate_map_boundaries(file_content) || !validate_map_boundaries(flipped_map))
+	if (!validate_map_boundaries(file_content) || \
+		!validate_map_boundaries(flipped_map))
 		return (ft_free_matrix(flipped_map), 0);
 	map_end = ft_get_matrix_maxlen(flipped_map);
 	ft_free_matrix(flipped_map);

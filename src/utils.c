@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:55:21 by emma              #+#    #+#             */
-/*   Updated: 2023/11/26 21:49:26 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/27 11:59:44 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	stris_empty(char *src)
 		return (0);
 	return (1);
 }
-
-
 
 void	ft_freegame(t_game game)
 {
