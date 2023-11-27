@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:22:11 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/26 18:51:52 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:42:14 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ typedef struct s_game
 // Parsing
 int		parse_infos(t_game *game, char **str, int *i);
 int		parse_map(t_game *game, char **str);
-int		validate_map(t_game *game, char **map);
 
 // init
 void	init_game(t_game *game);
@@ -146,7 +145,6 @@ int		stris_empty(char *line);
 void	ft_error(t_game *game, char *str);
 void	ft_freegame(t_game game);
 int		ft_close(t_game *game);
-
 
 // Window
 int		deal_keys(int key, t_game *game);

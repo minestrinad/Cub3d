@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 14:20:03 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/27 15:34:12 by ncortigi         ###   ########.fr       */
+/*   Created: 2023/11/27 14:39:08 by ncortigi          #+#    #+#             */
+/*   Updated: 2023/11/27 15:33:08 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_realloc(void *ptr, size_t size)
 {
-	size_t	i;
+	void	*new;
 
-	i = 0;
-	while (i < n)
+	if (size == 0)
 	{
-		((char *)dest)[i] = ((char *)src)[i];
-		i++;
+		free(ptr);
+		return (NULL);
 	}
-	return (dest);
+	if (ptr == NULL)
+		return (malloc(size));
+	new = ft_calloc(1, size);
+	if (!new)
+		return (NULL);
+	new = ft_memcpy(new, ptr, size);
+	free(ptr);
+	return (new);
 }

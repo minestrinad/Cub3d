@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:49:28 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/23 21:31:50 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:40:55 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	*ft_memmove(void *dst, const void *src, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
+void	*ft_realloc(void *ptr, size_t size);
 
 //		conversion
 int		ft_toupper(int c);
@@ -79,15 +80,14 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-
 ////				Cub3d
-int     get_next_line(int fd, char **line);
-char    **ft_lst_to_matrix(t_list *lst);
-int     ft_matlen(char **matrix);
-char 	**ft_read_file(char *map_file);
-char 	**ft_flip_matrix(char **matrix, int height, int width);
-int		flood_fill(int x, int y, char **map);
-void    ft_strdel(char **str);
-char   **ft_free_matrix(char **str);
+int		get_next_line(int fd, char **line);
+char	**ft_lst_to_matrix(t_list *lst);
+int		ft_matlen(char **matrix);
+char	**ft_read_file(char *map_file);
+char	**ft_flip_matrix(char **matrix, int height, int width);
+void	ft_strdel(char **str);
+char	**ft_free_matrix(char **str);
 int		ft_get_matrix_maxlen(char **mat);
+
 #endif

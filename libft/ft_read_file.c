@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:45:16 by emma              #+#    #+#             */
-/*   Updated: 2023/11/24 16:51:01 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:45:58 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**ft_read_file(char *map_file)
 		ft_putstr_fd("Error\nFile not found", 2);
 	while (get_next_line(fd, &line))
 	{
-		map_matrix = realloc(map_matrix, sizeof(char *) * (i + 1));
+		map_matrix = ft_realloc(map_matrix, sizeof(char *) * (i + 1));
 		map_matrix[i - 1] = ft_strdup(line);
 		ft_strdel(&line);
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_infos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:18:54 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/26 21:48:17 by everonel         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:01:05 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ int	parse_infos(t_game *game, char **file_content, int *end)
 	{
 		trimmed_line = ft_strtrim(file_content[*end], " \n");
 		if (check_ifis_info(game, trimmed_line, &check))
+		{
+			free(trimmed_line);
 			return (1);
+		}
 		ft_strdel(&trimmed_line);
 		*end += 1;
 	}

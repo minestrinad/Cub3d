@@ -1,2 +1,12 @@
-- fare ft_realloc
-
+Invalid read of size 1
+   at 0x40677E: ft_memcpy (ft_memcpy.c:22)
+   by 0x4066F8: ft_realloc (ft_realloc.c:29)
+   by 0x406213: ft_read_file (ft_read_file.c:44)
+   by 0x40267B: ft_parse_input_file (main.c:21)
+   by 0x4025D3: main (main.c:46)
+Address 0x4d98b58 is 0 bytes after a block of size 8 alloc'd
+   at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+   by 0x405AB5: ft_calloc (ft_calloc.c:20)
+   by 0x4061C1: ft_read_file (ft_read_file.c:39)
+   by 0x40267B: ft_parse_input_file (main.c:21)
+   by 0x4025D3: main (main.c:46)
