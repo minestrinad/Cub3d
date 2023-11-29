@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:55:21 by emma              #+#    #+#             */
-/*   Updated: 2023/11/27 11:59:44 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:14:42 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	stris_empty(char *src)
 	int	i;
 
 	i = 0;
+	if (src == NULL)
+		return (1);
 	while (src[i] && ft_strchr(" \t\n", src[i]))
 		i++;
 	if (!src[i])

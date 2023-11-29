@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:55:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/25 11:58:31 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:06:20 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	init_game(t_game *game)
 	(*game).view.cealing = NULL;
 	(*game).view.floor = NULL;
 	(*game).map = NULL;
+	(*game).m_x = 5;
+	(*game).m_y = 5;
 	(*game).player.start_dir = 0;
 	(*game).player.x = 0;
 	(*game).player.y = 0;

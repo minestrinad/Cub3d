@@ -1,1 +1,3 @@
-Header: no controllo multiple definizioni texture; NOME ESEGUIBILE!!!!! Get_next_line invalid write (caso linea di '1' molto lunga nella mappa) -> ABORT pixel piazzati fuori dalla finestra compaiono a sinistra sulla riga successiva: controllare accessi per pixel con coordinate piu' grandi della finestra valgrind: lettura mappa vuota invalida: leaks + accessi stris_empty(): aggiungere controllo null string CONTROLLO ESTENSIONE .cub 
+-Header: no controllo multiple definizioni texture;
+-Get_next_line invalid write (caso linea di '1' molto lunga nella mappa) -> ABORT
+-CONTROLLO ESTENSIONE .cub 

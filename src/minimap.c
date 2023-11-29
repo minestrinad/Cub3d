@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:14:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/25 11:15:54 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:12:10 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,19 @@ static void	draw_square_player(t_game *data, int x, int y, int color)
 {
 	int	i;
 	int	k;
+	int	dim_x;
+	int	dim_y;
 
 	k = 0;
-	while (k < 3)
+	dim_x = data->m_x;
+	dim_y = data->m_y;
+	while (k < dim_x)
 	{
 		i = 0;
-		while (i < 3)
+		while (i < dim_y)
 		{
-			my_mlx_pixel_put(data, x + k, y + i, color);
+			if ((x + k) < WIN_WIDTH && (y + i) < WIN_HEIGHT)
+				my_mlx_pixel_put(data, x + k, y + i, color);
 			i++;
 		}
 		k++;
@@ -36,12 +41,13 @@ static void	draw_square(t_game *data, int x, int y, int color)
 	int	k;
 
 	k = 0;
-	while (k < 5)
+	while (k < data->m_x)
 	{
 		i = 0;
-		while (i < 5)
+		while (i < data->m_y)
 		{
-			my_mlx_pixel_put(data, x + k, y + i, color);
+			if ((x + k) < WIN_WIDTH && (y + i) < WIN_HEIGHT)
+				my_mlx_pixel_put(data, x + k, y + i, color);
 			i++;
 		}
 		k++;
@@ -54,18 +60,25 @@ void	draw_minimap(t_game *data)
 	int	y;
 
 	y = 0;
+	data->m_x = WIN_WIDTH / (data->map_width * 5);
+	if (data->m_x < 0)
+		data->m_x = 1;
+	data->m_y = WIN_HEIGHT / (data->map_height * 5);
+	if (data->m_y < 0)
+		data->m_y = 1;
 	while (data->map[y])
 	{
 		x = 0;
 		while (data->map[y][x])
 		{
 			if (data->map[y][x] == '1')
-				draw_square(data, x * 5, y * 5, 0XFFFFFF);
+				draw_square(data, x * data->m_x, y * data->m_y, 0XFFFFFF);
 			else if (data->map[y][x] == '0')
-				draw_square(data, x * 5, y * 5, 0x000000);
+				draw_square(data, x * data->m_x, y * data->m_y, 0x000000);
 			x++;
 		}
 		y++;
 	}
-	draw_square_player(data, data->player.y * 5, data->player.x * 5, 0xb000f5);
+	draw_square_player(data, data->player.y * data->m_x, \
+		data->player.x * data->m_y, 0xb000f5);
 }
