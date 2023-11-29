@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:14:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/29 15:12:10 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:59:53 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,27 @@ static void	draw_square(t_game *data, int x, int y, int color)
 	}
 }
 
-void	draw_minimap(t_game *data)
+static void	calc_dim(t_game *data)
 {
-	int	x;
-	int	y;
-
-	y = 0;
 	data->m_x = WIN_WIDTH / (data->map_width * 5);
 	if (data->m_x < 0)
 		data->m_x = 1;
 	data->m_y = WIN_HEIGHT / (data->map_height * 5);
 	if (data->m_y < 0)
 		data->m_y = 1;
+	if (data->m_y > data->m_x)
+		data->m_y = data->m_x;
+	else if (data->m_x > data->m_y)
+		data->m_x = data->m_y;
+}
+
+void	draw_minimap(t_game *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	calc_dim(data);
 	while (data->map[y])
 	{
 		x = 0;
