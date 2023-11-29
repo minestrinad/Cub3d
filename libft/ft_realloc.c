@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:39:08 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/11/27 15:33:08 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:11:31 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static size_t	ft_malloc_usable_size(char **ptr)
+{
+	size_t	size;
+
+	size = 0;
+	while (ptr[size])
+		size++;
+	return (size * sizeof(char *));
+}
 
 void	*ft_realloc(void *ptr, size_t size)
 {
@@ -22,11 +32,11 @@ void	*ft_realloc(void *ptr, size_t size)
 		return (NULL);
 	}
 	if (ptr == NULL)
-		return (malloc(size));
+		return (ft_calloc(1, size));
 	new = ft_calloc(1, size);
 	if (!new)
 		return (NULL);
-	new = ft_memcpy(new, ptr, size);
+	ft_memcpy(new, ptr, ft_malloc_usable_size(ptr));
 	free(ptr);
 	return (new);
 }

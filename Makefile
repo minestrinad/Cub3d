@@ -18,7 +18,7 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -g -Wall -Wextra -Werror -c
 
-MLX_FLAGS = -L./mlx_linux -lmlx -lXext -lX11 -lm -lz
+MLX_FLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lz
 
 LIBFT = ./libft/libft.a
 
@@ -33,6 +33,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@printf "\033[0;32m compiling Libft...\n\033[0m"
 	@make -C ./libft
+	@make -C ./minilibx-linux
 	@printf "\033[0;32m compiling Cub3d...\n\033[0m"
 	@cc $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
