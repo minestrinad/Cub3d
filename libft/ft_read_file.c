@@ -6,7 +6,7 @@
 /*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:45:16 by emma              #+#    #+#             */
-/*   Updated: 2023/11/29 10:46:53 by everonel         ###   ########.fr       */
+/*   Updated: 2023/12/02 19:48:41 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**ft_read_file(char *map_file)
 	fd = open(map_file, O_RDONLY);
 	map_matrix = NULL;
 	if (fd == -1)
-		ft_putstr_fd("Error\nFile not found", 2);
+		return (NULL);
 	while (get_next_line(fd, &line))
 	{
 		map_matrix = ft_realloc(map_matrix, sizeof(char *) * (i + 2));

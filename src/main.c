@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/29 13:11:02 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/12/02 20:07:27 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+int	validate_file_extension(char *file)
+{
+	int	len;
+
+	len = ft_strlen(file);
+	if (len < 4)
+		return (0);
+	if (ft_strncmp(file + len - 4, ".cub", 4))
+		return (0);
+	return (1);
+}
 
 static t_game	ft_parse_input_file(t_game game, char *file)
 {
@@ -20,16 +32,18 @@ static t_game	ft_parse_input_file(t_game game, char *file)
 	last_readed = 0;
 	file_content = ft_read_file(file);
 	if (!file_content)
-		ft_error(&game, "invalid file\n");
-	if (parse_infos(&game, file_content, &last_readed))
+		ft_error(&game, "Invalid file\n");
+	else if (!validate_file_extension(file))
+		ft_error(&game, "Invalid file extension\n");
+	else if (parse_infos(&game, file_content, &last_readed))
 	{
 		ft_free_matrix(file_content);
-		ft_error(&game, "invalid file header\n");
+		ft_error(&game, "Invalid file header\n");
 	}
-	if (!parse_map(&game, file_content + last_readed))
+	else if (!parse_map(&game, file_content + (last_readed + 1)))
 	{
 		ft_free_matrix(file_content);
-		ft_error(&game, "invalid map\n");
+		ft_error(&game, "Invalid map\n");
 	}
 	ft_free_matrix(file_content);
 	return (game);

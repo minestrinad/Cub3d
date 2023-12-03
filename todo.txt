@@ -1,3 +1,3 @@
 -Header: no controllo multiple definizioni texture;
 -Get_next_line invalid write (caso linea di '1' molto lunga nella mappa) -> ABORT
--CONTROLLO ESTENSIONE .cub 
+-**CONTROLLO ESTENSIONE .cub** 

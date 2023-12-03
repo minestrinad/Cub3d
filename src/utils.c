@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:55:21 by emma              #+#    #+#             */
-/*   Updated: 2023/11/29 15:14:42 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/12/02 19:46:21 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void	ft_error(t_game *game, char *str)
 	}
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
-	exit(0);
+	exit(1);
 }
