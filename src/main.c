@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:29:33 by everonel          #+#    #+#             */
-/*   Updated: 2023/12/02 20:07:27 by everonel         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:45:10 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,16 @@ static t_game	ft_parse_input_file(t_game game, char *file)
 	if (!file_content)
 		ft_error(&game, "Invalid file\n");
 	else if (!validate_file_extension(file))
+	{
+		ft_free_matrix(file_content);
 		ft_error(&game, "Invalid file extension\n");
+	}
 	else if (parse_infos(&game, file_content, &last_readed))
 	{
 		ft_free_matrix(file_content);
 		ft_error(&game, "Invalid file header\n");
 	}
-	else if (!parse_map(&game, file_content + (last_readed + 1)))
+	else if (!parse_map(&game, file_content + last_readed))
 	{
 		ft_free_matrix(file_content);
 		ft_error(&game, "Invalid map\n");

@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:18:54 by everonel          #+#    #+#             */
-/*   Updated: 2023/11/27 15:01:05 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:39:15 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,24 @@ static int	parse_color_info(char *str, int **rgb)
 
 static int	check_ifis_info(t_game *game, char *line, int *check)
 {
-	if (ft_strncmp(line, NORTH_PATH, 3) == 0)
+	int	tmp;
+
+	tmp = *check;
+	if (ft_strncmp(line, NORTH_PATH, 3) == 0 && !game->view.north.img)
 		*check += parse_texture_info(*game, line, &(*game).view.north);
-	else if (ft_strncmp(line, SOUTH_PATH, 3) == 0)
+	else if (ft_strncmp(line, SOUTH_PATH, 3) == 0 && !game->view.south.img)
 		*check += parse_texture_info(*game, line, &(*game).view.south);
-	else if (ft_strncmp(line, EAST_PATH, 3) == 0)
+	else if (ft_strncmp(line, EAST_PATH, 3) == 0 && !game->view.east.img)
 		*check += parse_texture_info(*game, line, &(*game).view.east);
-	else if (ft_strncmp(line, WEST_PATH, 3) == 0)
+	else if (ft_strncmp(line, WEST_PATH, 3) == 0 && !game->view.weast.img)
 		*check += parse_texture_info(*game, line, &(*game).view.weast);
-	else if (ft_strncmp(line, CEALING, 1) == 0)
+	else if (ft_strncmp(line, CEALING, 1) == 0 && !game->view.cealing)
 		*check += parse_color_info(line + 1, &(*game).view.cealing);
-	else if (ft_strncmp(line, FLOOR, 1) == 0)
+	else if (ft_strncmp(line, FLOOR, 1) == 0 && !game->view.floor)
 		*check += parse_color_info(line + 1, &(*game).view.floor);
 	else if (stris_empty(line))
+		return (1);
+	if (*check == tmp)
 		return (1);
 	return (0);
 }
@@ -91,6 +96,11 @@ int	parse_infos(t_game *game, char **file_content, int *end)
 	check = 0;
 	while (file_content[*end] && check < 6)
 	{
+		if (!ft_strncmp(file_content[*end], "\n", 1))
+		{
+			*end += 1;
+			continue ;
+		}
 		trimmed_line = ft_strtrim(file_content[*end], " \n");
 		if (check_ifis_info(game, trimmed_line, &check))
 		{
