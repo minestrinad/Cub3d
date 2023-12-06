@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: everonel <everonel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/12/02 20:05:36 by everonel         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:47:55 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int	validate_map_line(char *line)
 	if (!line || !stris_empty(line))
 		return (1);
 	while (*line && ft_strchr(" \n012NSEW", *line)){
-		printf ("line: %s\n", line);
+		// printf ("line: %s\n", line);
 		line++;}
 	if (*line)
 		return (0);

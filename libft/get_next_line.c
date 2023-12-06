@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:42:01 by emma              #+#    #+#             */
-/*   Updated: 2023/12/01 12:33:29 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/12/06 13:06:03 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ int	get_next_line(int fd, char **line)
 
 	i = 0;
 	rd = 0;
-	buffer = (char *)ft_calloc(100, 1);
+	buffer = (char *)ft_calloc(1, 1);
 	rd = read(fd, &character, 1);
 	while (rd > 0)
 	{
+		buffer = ft_realloc(buffer, sizeof(char *) * (i + 2));
 		buffer[i++] = character;
 		if (character == '\n')
 			break ;
