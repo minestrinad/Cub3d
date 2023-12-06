@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 03:50:46 by emma              #+#    #+#             */
-/*   Updated: 2023/12/06 12:47:55 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:31:08 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,8 @@ static int	validate_map_line(char *line)
 {
 	if (!line || !stris_empty(line))
 		return (1);
-	while (*line && ft_strchr(" \n012NSEW", *line)){
-		// printf ("line: %s\n", line);
-		line++;}
+	while (*line && ft_strchr(" \n012NSEW", *line))
+		line++;
 	if (*line)
 		return (0);
 	return (1);
